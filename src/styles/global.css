@@ -375,7 +375,7 @@ nav a[href].next {
     
 nav a[href].next::after {
     margin-left: 2ex;
-    content: "â®ž";
+    content: ">>";
 }
 
 nav a[href].prev {
@@ -386,7 +386,7 @@ nav a[href].prev {
     
 nav a[href].prev::before {
     margin-right: 2ex;
-    content: "â®œ";
+    content: "<<";
 }
 
 blockquote, aside {

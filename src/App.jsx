@@ -1,4 +1,4 @@
-import AbilityScoreSetter from "./components/AbilityScoreSetter"
+import AbilityScores from "./components/character-creation/AbilityScores";
 import useLocalStorage from "./hooks/useLocalStorage";
 import styled from "styled-components";
 
@@ -28,30 +28,7 @@ function App() {
     <div>
       <h2>Character Creation</h2>
       <div>
-        <p className="byline">
-          Available Points: 
-          <AvailablePointsSpan>
-            {availablePoints}
-          </AvailablePointsSpan>
-        </p>
-        <AbilityScoreSetter
-          name="meat"
-          description="A measure of your physical ability"
-          availablePoints={availablePoints}
-          setAvailablePoints={setAvailablePoints}
-        />
-        <AbilityScoreSetter
-          name="leet"
-          description="A measure of your mental ability"
-          availablePoints={availablePoints}
-          setAvailablePoints={setAvailablePoints}
-        />
-        <AbilityScoreSetter
-          name="street"
-          description="A measure of your social ability"
-          availablePoints={availablePoints}
-          setAvailablePoints={setAvailablePoints}
-        />
+        <AbilityScores />
       </div>
     </div>
     </>
