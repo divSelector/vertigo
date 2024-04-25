@@ -1,3 +1,5 @@
+/* the timing in ms must match timeout value in CharacterCreation.jsx */
+
 .slide-enter-active,
 .slide-exit-active {
     opacity: 1;

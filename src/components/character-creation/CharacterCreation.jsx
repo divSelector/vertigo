@@ -12,6 +12,7 @@ const AnimatedCharacterCreationPages = () => {
     return (
         <SwitchTransition>
             <CSSTransition key={location.key} classNames="slide" timeout={200}>
+                {/* The timeout must match the times in transitions.css */}
                 <Routes>
                     <Route path={routes.characterCreation} element={
                         <AuraSelection />
