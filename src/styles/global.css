@@ -100,6 +100,7 @@ section > h1 ~ * {
 h2 {
     font-size: 1.6333333333em;
     margin-top: 1.5em;
+    margin-bottom: 0.5em;
 }
 
 h2::before {
@@ -134,6 +135,7 @@ section > h3 ~ * {
 
 h4 {
     font-size: 0.9666666667em;
+    margin-left: 1.5em;
 }
 
 h4::before {
@@ -325,6 +327,7 @@ hr[data-dec=""]::before {
 
 nav {
   padding-bottom: 1em;
+  margin-top: 3.5rem;
 }
 
 nav::after {

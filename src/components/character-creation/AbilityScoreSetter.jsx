@@ -2,35 +2,37 @@ import useLocalStorage from "../../hooks/useLocalStorage";
 import { Button } from "../../styles/Button";
 import styled from 'styled-components';
 
-const AbilityScoreSetter = ({ name, description, availablePoints, setAvailablePoints, setErrMsg }) => {
+const AbilityScoreSetter = ({ name, description, availablePoints, setAvailablePoints, errMsg, setErrMsg }) => {
 
     const storageKey = 'character-creation-ability-score-' + name
     const [count, setCount] = useLocalStorage(storageKey, 1);
 
-    const showErrorMessage = (msg, timer=2500) => {
-      setErrMsg(msg)
-      setTimeout(()=>{
-        setErrMsg("")
-      }, timer)
+    const showErrorMessage = (msg, timer = 1500) => {
+        if (errMsg == "") {
+            setErrMsg(msg)
+            setTimeout(() => {
+                setErrMsg("")
+            }, timer)
+        }
     }
 
     const increment = () => {
         if (availablePoints > 0) {
-          setCount(count + 1);
-          setAvailablePoints(availablePoints - 1);
+            setCount(count + 1);
+            setAvailablePoints(availablePoints - 1);
         } else {
-          showErrorMessage("Slow down there, broke bitch. You got no points.")
-        } 
-      };
-    
-      const decrement = () => {
-        if (count > 1) {
-          setCount(count - 1);
-          setAvailablePoints(availablePoints + 1);
-        } else {
-          showErrorMessage("A score of less than 1 is nonexistance, pal.")
+            showErrorMessage("Slow down there, broke bitch. You got no points.")
         }
-      };
+    };
+
+    const decrement = () => {
+        if (count > 1) {
+            setCount(count - 1);
+            setAvailablePoints(availablePoints + 1);
+        } else {
+            showErrorMessage("A score of less than 1 is nonexistance, pal.")
+        }
+    };
 
     return (
         <>
