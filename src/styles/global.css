@@ -1,0 +1,595 @@
+@charset "UTF-8";
+
+@viewport {
+  zoom: 1;
+  width: device-width; 
+}
+
+:root, body {
+  font-size: 14pt; 
+}
+
+:root {
+  --hue: 270;
+  --width: 35rem;
+  --bright: 12%;
+  --link-br: 73%;
+  --hover: 22%; 
+}
+
+::selection {
+  background-color: hsl(var(--hue), 100%, 60%);
+  color: white; 
+}
+
+body {
+    margin-top: 1em;
+    padding: 0 1em;
+    font-family: 'Zen Kaku Gothic Antique', sans-serif;
+    hanging-punctuation: first last force-end;
+    text-align: justify;
+
+    --fg-color: hsl(var(--hue),100%,89%);
+    --bg-color: hsl(var(--hue),84%,var(--bright));
+    --faint-color: hsl(var(--hue),64%,64%);
+    max-width: var(--width);
+    margin: auto;
+    background: var(--bg-color);
+    color: var(--fg-color); 
+    
+}
+
+/* @media (min-resolution: 400dpi) and (max-width: 1080px) {
+    body {
+        max-width: calc(1080px - 1em);
+        margin: auto;
+        margin-top: 1em;
+        margin-bottom: 1em; 
+    } 
+} */
+
+body::-webkit-scrollbar {
+    width: 20px; 
+}
+
+body::-webkit-scrollbar-track {
+    background: linear-gradient(to left, var(--bg-color) -50%, hsl(var(--hue), 100%, calc(var(--bright) / 2)) 130%); 
+}
+body::-webkit-scrollbar-thumb {
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-left: 1px outset hsl(var(--hue), 60%, 30%);
+    border-radius: 1.5px 0 0 1.5px; 
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background-color: hsl(var(--hue), 100%, 28%);
+    border-color: hsl(var(--hue), 60%, 40%); 
+}
+
+img {
+    max-width: 100%;
+    max-height: auto;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  all: unset;
+  display: block;
+  text-align: left;
+  line-height: 1em;
+  margin-top: 0.3em; 
+}
+
+h1 a[href], h2 a[href], h3 a[href], h4 a[href], h5 a[href], h6 a[href] {
+    color: hsl(var(--hue), 60%, 80%); 
+}
+
+h1 a[href]:hover, h2 a[href]:hover, h3 a[href]:hover, h4 a[href]:hover, h5 a[href]:hover, h6 a[href]:hover {
+    color: var(--fg-color); 
+} 
+
+h1 {
+    font-size: 1.9666666667em; 
+}
+
+section > h1 ~ * {
+    margin-left: 0.5em; 
+}
+
+h2 {
+    font-size: 1.6333333333em;
+    margin-top: 1.5em;
+}
+
+h2::before {
+    display: inline;
+    margin-right: 0.2em; 
+
+}
+
+section > h2 ~ * {
+    margin-left: 1em; 
+}
+
+h3 {
+    font-size: 1.3em;
+    margin-left: 1.5em;
+}
+
+@media (min-width: 60em) {
+    h3 {
+        margin: 0;
+    }
+}
+
+h3::before {
+    display: inline;
+    margin-right: 0.2em; 
+}
+
+section > h3 ~ * {
+    margin-left: 2.5em; 
+}
+
+h4 {
+    font-size: 0.9666666667em;
+}
+
+h4::before {
+    display: inline;
+    margin-right: 0.2em; 
+}
+
+section > h4 ~ * {
+    margin-left: 2em; 
+}
+
+h5 {
+  font-size: 0.6333333333em;
+}
+
+h5::before {
+    display: inline;
+    margin-right: 0.2em;
+}
+
+section > h5 ~ * {
+    margin-left: 2.5em;
+}
+
+
+h1 a[href], h3 a[href] {
+    color: hsl(var(--hue), 50%, 70%);
+}
+
+p {
+    margin: 0.7em 0;
+    line-height: 1.5em;
+}
+
+del {
+    color: var(--faint-color);
+    text-decoration-color: hsl(var(--hue), 80%, 60%);
+}
+
+body > code,
+pre > code,
+code.listing, p code, li code {
+    background-color: hsl(var(--hue), 71%, 25%);
+    font-size: 0.8em;
+    padding: 0 0.5em;
+    text-shadow: 0px 1.2px 0px #2A0017;
+    border: 1px solid #2A0017;
+    font-family: "Inconsolata", monospace;
+    box-shadow: 0 0 5px -2px black inset;
+}
+
+body > code,
+pre > code,
+code.listing {
+    display: block;
+    box-shadow: 0 0 8px -2px black inset;
+    white-space: pre-wrap;
+    padding: 0.5em 1em;
+    line-height: 1.2em;
+    tab-size: 4;
+    width: 100%;
+    overflow: scroll;
+}
+
+a[href] {
+    --link-t: var(--hue), 100%, var(--link-br);
+    --hi-t: var(--hue), 100%, calc(var(--link-br) + var(--hover));
+    --link-c: hsl(var(--link-t));
+    --ul-c: hsla(var(--link-t), 30%);
+    --hi-c: hsl(var(--hi-t));
+    --ul-hi-c: hsla(var(--hi-t), 60%);
+    --glow-c: hsla(var(--link-t), 50%);
+    color: var(--link-c);
+    text-decoration-color: var(--ul-c);
+    text-underline-offset: 2px; 
+}
+
+p a[href]:focus, 
+li a[href]:focus, 
+span a[href]:focus, 
+h1 a[href]:focus, 
+h2 a[href]:focus, 
+h3 a[href]:focus, 
+p a[href]:hover:focus, 
+li a[href]:hover:focus, 
+span a[href]:hover:focus, 
+h1 a[href]:hover:focus, 
+h2 a[href]:hover:focus, 
+h3 a[href]:hover:focus {
+    color: var(--bg-color) !important;
+    background: var(--fg-color) !important;
+    box-shadow: 0 0 30px var(--ul-c);
+    text-decoration: none;
+    outline: none; 
+}
+
+a[href]:hover, a[href]:active {
+    color: var(--hi-c);
+    text-decoration: underline;
+    text-decoration-color: var(--ul-hi-c);
+    text-shadow: 0px 0px 30px var(--glow-c);
+    background: none !important;
+    box-shadow: none;
+}
+
+
+div.dir > div {
+  margin-left: 2em;
+  text-indent: -2em;
+}
+
+div.dir > div > *:first-child {
+    font-weight: bold;
+}
+
+ol, ul {
+  padding-left: 1.2em;
+  list-style: none;
+  line-height: 1.4em;
+}
+
+ol ol, ol ul, ol li, ul ol, ul ul, ul li {
+    margin-top: 0.5em;
+}
+
+ol li::before, ul li::before {
+    color: hsl(var(--hue), 40%, 60%);
+}
+
+ul li::before {
+    hanging-punctuation: none;
+    content: "x";
+    width: 0.7em;
+    margin-left: 0.6em;
+    margin-right: 1.2em;
+}
+
+ol {
+    counter-reset: li;
+}
+
+ol li::before {
+    counter-increment: li;
+    content: counter(li);
+    width: 1.5em;
+    margin-left: -1.9em;
+    text-align: right;
+    padding-right: 0.4em;
+}
+
+.byline {
+  margin-left: 1.5em;
+  margin-top: -0.5;
+  padding: 0em;
+  font-style: italic;
+  color: var(--faint-color);
+}
+
+hr {
+  border: none;
+  border-bottom: 1px solid hsl(var(--hue), 50%, 30%);
+  width: 90%;
+}
+
+hr[data-dec]::before {
+    display: block;
+    content: attr(data-dec);
+    position: relative;
+    letter-spacing: 1em;
+    text-align: center;
+    top: 0.8em;
+    color: hsl(var(--hue), 50%, 40%);
+    font-size: 60%;
+}
+
+hr[data-dec=""]::before {
+    content: "â—†";
+}
+
+.imgbox {
+    margin: 0 calc((20vw - 20%) * -1);
+    break-inside: avoid;
+}
+
+.entry {
+    margin-left: 1em;
+    text-indent: -1em;
+}
+
+nav {
+  padding-bottom: 1em;
+}
+
+nav::after {
+    display: table;
+    content: "";
+    clear: both;
+}
+
+nav a[href] {
+    --fg-color: hsl(var(--hue), 100%, 80%);
+    display: block;
+    color: var(--fg-color);
+    background-color: hsl(var(--hue), 100%, calc(var(--bright) / 2));
+    border: 1px solid var(--fg-color);
+    text-decoration: none;
+    line-height: .7em;
+    transition-property: border-color, text-shadow, color, --fg-color, background;
+    transition-duration: 0.2s;
+}
+
+nav a[href]:hover {
+    --fg-color: hsl(var(--hue),80%,90%);
+    background: hsl(var(--hue), 70%, 10%) !important;
+    text-decoration: none;
+}
+
+nav a[href]:active, nav a[href]:focus {
+    padding: 0;
+    margin: 0;
+}
+
+nav a[href].next::after, nav a[href].prev::before {
+    display: inline-block;
+    color: var(--bg-color);
+    font-weight: bold;
+    background-color: var(--fg-color);
+    padding: 1.7ex 1.5ex;
+    text-shadow: none;
+    transition-property: background-color, --fg-color;
+    transition-duration: 0.2s;
+}
+
+nav a[href].next {
+    float: right;
+    padding-left: 2ex;
+    border-radius: 0 0 0 10px;
+}
+    
+nav a[href].next::after {
+    margin-left: 2ex;
+    content: "â®ž";
+}
+
+nav a[href].prev {
+    float: left;
+    padding-right: 2ex;
+    border-radius: 0 0 10px 0;
+}
+    
+nav a[href].prev::before {
+    margin-right: 2ex;
+    content: "â®œ";
+}
+
+blockquote, aside {
+    page-break-inside: avoid;
+    margin-left: 1em;
+    margin-right: 1em;
+    padding: 0.1px 0.1em;
+    font-size: 90%;
+
+    background: rgba(0, 0, 0, 0.5);
+    outline: 1px solid hsl(var(--hue), 100%, calc(var(--bright) - 8%));
+}
+
+
+blockquote > blockquote, aside > blockquote, blockquote > aside, aside > aside {
+    margin-bottom: 1em;
+}
+
+blockquote + blockquote, aside + blockquote, blockquote + aside, aside + aside {
+    margin-top: 1em;
+}
+
+blockquote {
+  margin: 0;
+  border-left: 5px solid hsl(var(--hue), 60%, calc(var(--bright) + 20%));
+}
+
+aside {
+    position:sticky;
+    --asize: 28px;
+    --padsize: 4px;
+    padding-left: calc(var(--asize) + (var(--padsize) * 2) + 0.5em);
+    max-width: 12em; 
+}
+
+aside::before {
+    line-height: 55px;
+    display: block;
+    position: absolute;
+    left: 0;
+    padding: 0 var(--padsize);
+    height: 100%;
+    content: "ðŸŽµ";
+    color: black;
+    font-size: var(--asize);
+
+    background: hsl(var(--hue), 60%, calc(var(--bright) + 20%));
+}
+
+@media (min-width: 60em) {
+    aside {
+        position: fixed;
+        left: calc(10px + var(--width) + (50vw - (var(--width) / 2)));
+        margin: 0;
+    }
+}
+
+.endnote .entry a.backlink {
+    text-decoration: underline !important;
+    font-weight: bold;
+}
+
+@media screen {
+    a.endnote-link[href], a.endnote-link[href]:focus, 
+    a.endnote-link[href]:hover:focus {
+        display: inline-block;
+        text-decoration: none;
+        color: var(--fg-color);
+        background-color: hsl(var(--hue), 60%, 25%);
+        height: 100%;
+        padding: 0 0.4em;
+        margin: 0em;
+        --border-color: hsl(var(--hue),80%,8%);
+        border: 1px solid var(--border-color);
+    }
+
+    a[href].endnote-link:hover {
+        background-color: hsl(var(--hue), 76%, 35%) !important;
+    }
+
+    .endnote {
+        bottom: 0.5em;
+    }
+
+    @supports (position: fixed) {
+        .endnote {
+            position: fixed;
+            display: none;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            background-color: hsl(var(--hue), 61%, 15%);
+            --box-shadow-color: hsla(var(--hue),54%,30%,0.7);
+            box-shadow: 0 0 40px 0 var(--box-shadow-color);
+            left: 0;
+            right: 0;
+            max-width: calc(var(--width) + 2em);
+            margin: auto;
+        }
+    }
+
+    .endnote:target {
+        display: block;
+    }
+
+    .endnote > * {
+        font-size: 90%;
+    }
+
+    .endnote .entry {
+        margin-left: 0em;
+        padding: 0.7em 1.0em;
+        text-indent: -0.5em;
+        max-height: calc(100vh - 2em);
+        overflow-x: visible;
+        overflow-y: auto;
+        line-height: 1.4em;
+    }
+
+    .endnote .entry a.backlink {
+        text-decoration: none;
+    }
+
+    .endnote .ui {
+        display: none;
+    }
+    
+    @supports (position: fixed) {
+        .endnote .ui a[href], .endnote a.ui[href] {
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .endnote .ui {
+            display: block;
+            position: absolute;
+            top: -1.2em;
+            right: -0.8em;
+            background: hsl(var(--hue), 51%, 5%);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 0.1em .5em;
+        }
+        
+        .endnote a[href].ui {
+            background: hsl(var(--hue), 51%, 5%) !important;
+            cursor: default;
+        }
+        
+        .endnote a[href].ui:hover {
+            border-style: outset;
+        }
+        
+        .endnote a[href].ui:active {
+            border-style: inset;
+        }
+    }
+}
+
+@supports (position: fixed) {
+    .endnote .entry a.backlink {
+        text-decoration: none !important;
+    }
+}
+
+.right {
+    float: right;
+    margin-left: 1em;
+    margin-top: 0.4em;
+}
+.left {
+    float: left;
+    min-width: 15em;
+    margin-right: 1em;
+    border: 1px solid hsl(var(--hue), 50%, 5%);
+    box-sizing: border-box;
+    display: block;
+    width: 72%;
+    height: auto;
+    border-radius: 3px 3px 0 0; 
+    margin-top: 0.4em;
+    border: none;
+}
+
+.box {
+    margin: 2.5em;
+    margin-top: 0.5em;
+    padding: 0.5em 1em;
+    border: 1px solid hsl(var(--hue), 65%, 60%);
+    background-color: hsl(var(--hue), 100%, calc(var(--bright) / 2));
+    font-size: 80%;
+    border-radius: 2px;
+    width: 50%;
+    box-shadow: 10px 10px var(--faint-color);
+}
+
+ol.alpha li::before {
+    content: counter(li,lower-latin) ")";
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+main ol li {
+    margin-top: 1.1em;
+}
