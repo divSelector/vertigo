@@ -5,9 +5,10 @@ import routes from "../../data/routes";
 import { SwitchTransition, CSSTransition } from "react-transition-group";
 import '../../styles/transitions.css';
 
-const AnimatedSwitch = () => {
+const AnimatedCharacterCreationPages = () => {
+
     const location = useLocation();
-    console.log("location", location);
+    
     return (
         <SwitchTransition>
             <CSSTransition key={location.key} classNames="slide" timeout={200}>
@@ -32,7 +33,7 @@ function CharacterCreation() {
             <div>
                 <h2>Character Creation</h2>
                 <BrowserRouter>
-                    <AnimatedSwitch />
+                    <AnimatedCharacterCreationPages />
                 </BrowserRouter>
             </div>
         </>
