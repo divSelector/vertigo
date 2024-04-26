@@ -53,7 +53,8 @@ function AbilityScores() {
 
             <nav>
                 <Link className="prev" to={routes.characterCreation}>BACK</Link>
-                {availablePoints == 0 &&
+
+                {availablePoints == 0 && 
                     <Link className="next" to={routes.characterCreation + "3"}>NEXT</Link>
                 }
             </nav>
