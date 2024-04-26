@@ -1,4 +1,3 @@
-import useLocalStorage from "../../hooks/useLocalStorage";
 import { Link } from 'react-router-dom';
 import { SliderContainer, SliderInput } from "../../styles/Slider";
 import game from "../../data/game";
@@ -21,16 +20,23 @@ function AuraSelection() {
 
     function getColorName(hue) {
         const colors = [
-            { range: [0, 25], name: 'Red' },
-            { range: [25, 45], name: 'Orange' },
-            { range: [45, 80], name: 'Yellow' },
+            { range: [0, 20], name: 'Red' },
+            { range: [20, 30], name: 'Vermilion' },
+            { range: [30, 36], name: 'Orange' },
+            { range: [36, 43], name: 'Amber' },
+            { range: [43, 65], name: 'Yellow' },
+            { range: [65, 80], name: 'Olive' },
             { range: [80, 90], name: 'Puke Green' },
-            { range: [90, 150], name: 'Green' },
-            { range: [150, 180], name: 'Blue Green' },
-            { range: [180, 210], name: 'Cyan' },
-            { range: [210, 250], name: 'Blue' },
-            { range: [250, 290], name: 'Purple' },
-            { range: [290, 330], name: 'Pink' },
+            { range: [90, 110], name: 'Chartreuse Green' },
+            { range: [110, 130], name: 'Green' },
+            { range: [130, 148], name: 'Spring Green' },
+            { range: [148, 180], name: 'Cyan' },
+            { range: [180, 210], name: 'Azure' },
+            { range: [210, 260], name: 'Blue' },
+            { range: [260, 290], name: 'Purple' },
+            { range: [290, 310], name: 'Magenta' },
+            { range: [310, 322], name: 'Pink' },
+            { range: [322, 330], name: 'Rose' },
             { range: [330, 360], name: 'Red' },
         ];
 
@@ -81,7 +87,7 @@ function AuraSelection() {
             }}>
                 {getBrightName(bright)} {getColorName(hue)}
             </h3>
-            {/* <p>{bright} {hue}</p> */}
+            <p>{bright} {hue}</p>
 
             <hr />
             <p>Every character in {game.name} including non player characters have an aura. For lack of a better word, this is a measurement of how likely you are to get along with the people around you. Obviously, effort can be put into building better relationships with any type of person. Similarly, you can alienate someone with a similar aura to yours through your actions. But characters who have similar auras will <i style={{color:'var(--faint-color)'}}>get</i> each other more easily.</p>
