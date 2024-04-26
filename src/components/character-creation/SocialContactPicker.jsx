@@ -2,9 +2,10 @@ import { Link } from 'react-router-dom';
 import game from "../../data/game";
 import routes from "../../data/routes";
 import { useTheme } from "../../context/theme";
-import { forwardRef } from 'react';
+import { forwardRef, useEffect } from 'react';
 import Aura from '../../game/Aura';
 import CharacterSheet from '../CharacterSheet';
+import useLocalStorage from '../../hooks/useLocalStorage';
 
 const SocialContactPicker = forwardRef((props, ref) => {
 
@@ -16,14 +17,23 @@ const SocialContactPicker = forwardRef((props, ref) => {
         return Math.floor(Math.random() * 20) + 1;
     }
 
-    let socialContactAuras = [];
-    let socialContactHue;
-    for (let i = 0; i < 4; i++) {
-        socialContactHue = playerAura.getRandomComplementaryHueInRange()
-        socialContactAuras.push(new Aura(socialContactHue, getRandomBright()))
-    }
+    const [socialContactAuras, setSocialContactAuras] = useLocalStorage(
+        'character-creation-random-social-contact-auras',
+        []
+    );
 
-    console.log(socialContactAuras)
+    useEffect(() => {
+        if (!socialContactAuras.length) {
+            let newAuras = [];
+            for (let i = 0; i < 4; i++) {
+                const socialContactHue = playerAura.getRandomComplementaryHueInRange();
+                const newAura = new Aura(socialContactHue, getRandomBright());
+                newAuras.push(newAura);
+            }
+            setSocialContactAuras(newAuras);
+        }
+    }, []);
+
 
     return (
         <section ref={ref}>

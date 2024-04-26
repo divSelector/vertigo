@@ -2,6 +2,8 @@ class Aura {
     constructor(hue, bright) {
         this.hue = this.validateHue(hue);
         this.bright = this.validateBright(bright);
+
+        this.complementaryRange = 45
     }
 
     validateHue(hue) {
@@ -24,8 +26,9 @@ class Aura {
 
     calculateComplementaryRange() {
         const complementaryHue = this.calculateComplementaryHue();
-        const lowerRange = (complementaryHue - 30);
-        const upperRange = (complementaryHue + 30);
+        let lowerRange = (complementaryHue - this.complementaryRange);
+        let upperRange = (complementaryHue + this.complementaryRange);
+    
         if (lowerRange < 0) {
             lowerRange += 360;
         }

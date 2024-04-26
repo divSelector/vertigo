@@ -5,13 +5,20 @@ import routes from "../../data/routes";
 import { useTheme } from "../../context/theme";
 import { forwardRef } from 'react';
 import { getColorName, getBrightName } from '../../game/Aura';
+import useLocalStorage from '../../hooks/useLocalStorage';
 
 const AuraSelection = forwardRef((props, ref) => {
 
     const { hue, bright, updateHue, updateBright } = useTheme();
 
+    const [socialContactAuras, setSocialContactAuras] = useLocalStorage(
+        'character-creation-random-social-contact-auras',
+        []
+    );
+
     const handleHueChange = (event) => {
         const newHue = parseInt(event.target.value);
+        setSocialContactAuras([])
         updateHue(newHue)
     }
 
