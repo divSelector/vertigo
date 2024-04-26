@@ -1,0 +1,102 @@
+.character-sheet-container {
+    /* position: absolute; */
+    max-width: 600px;
+    top: 254px;
+    user-select: none;
+}
+
+#character-sheet-container > table:first-child {
+    display: block;
+}
+
+
+#character-sheet-container > table:not(:first-child) {
+    display: none;
+}
+
+#pagin-container {
+    float: right;
+}
+
+table.character-sheet {
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+    font-size: 80%;
+    margin: 1em;
+    padding: 0.5em;
+}
+
+.character-sheet th.header {
+    text-align: center;
+}
+
+.character-sheet th.header::before,
+.character-sheet th.header::after {
+    content: "â€”";
+    margin: 0 0.5em;
+    opacity: 0.6;
+}
+
+.character-sheet hr {
+    border-color: white;
+    opacity: 0.2;
+}
+
+.character-sheet td i {
+    font-weight: 100;
+}
+
+.character-sheet tr {
+    font-family: "Alegreya Sans", "Open Sans", "M+ 1c", sans-serif;
+}
+
+.character-sheet th {
+    text-align: right;
+}
+
+.character-sheet td,
+.character-sheet th {
+    padding: .2em .4em;
+}
+
+.character-sheet .slogan {
+    text-align: center;
+    letter-spacing: .2em;
+    color: #888;
+    padding-bottom: 0;
+}
+
+.character-sheet .slogan::before,
+.character-sheet .slogan::after {
+    content: "Â·";
+    margin: 0 0.3em;
+    opacity: 0.6;
+}
+
+.character-sheet > tr > td > i > img {
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+.character-sheet > tr > td > i {
+    margin-left: 10px;
+}
+
+@media screen and (max-width: 400px) {
+    .character-sheet > tr  > th  {
+        display: none;
+    }
+  }
+
+.word {
+    --class: var(--hue);
+}
+
+.ctd {
+    float: right;
+}
+
+.ca {
+    color: #fff;
+}

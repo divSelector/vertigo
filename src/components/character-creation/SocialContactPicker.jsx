@@ -4,6 +4,7 @@ import routes from "../../data/routes";
 import { useTheme } from "../../context/theme";
 import { forwardRef } from 'react';
 import Aura from '../../game/Aura';
+import CharacterSheet from '../CharacterSheet';
 
 const SocialContactPicker = forwardRef((props, ref) => {
 
@@ -11,11 +12,15 @@ const SocialContactPicker = forwardRef((props, ref) => {
 
     const playerAura = new Aura(hue, bright)
 
+    const getRandomBright = () => {
+        return Math.floor(Math.random() * 20) + 1;
+    }
+
     let socialContactAuras = [];
     let socialContactHue;
     for (let i = 0; i < 4; i++) {
         socialContactHue = playerAura.getRandomComplementaryHueInRange()
-        socialContactAuras.push(new Aura(socialContactHue, 10))
+        socialContactAuras.push(new Aura(socialContactHue, getRandomBright()))
     }
 
     console.log(socialContactAuras)
@@ -23,6 +28,10 @@ const SocialContactPicker = forwardRef((props, ref) => {
     return (
         <section ref={ref}>
             <h4>Select a Social Contact</h4>
+
+            {socialContactAuras.map((aura, index) => (
+                <CharacterSheet key={index} aura={aura} />
+            ))}
 
             <nav>
                 <Link className="prev" to={routes.characterCreation + "2"}>BACK</Link>
@@ -36,3 +45,4 @@ const SocialContactPicker = forwardRef((props, ref) => {
 })
 
 export default SocialContactPicker;
+
