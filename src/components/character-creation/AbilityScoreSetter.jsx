@@ -1,6 +1,7 @@
 import useLocalStorage from "../../hooks/useLocalStorage";
 import { Button } from "../../styles/Button";
 import styled from 'styled-components';
+import { ContainerNoSelect, Row } from "../../styles/Layout";
 
 const AbilityScoreSetter = ({ name, description, availablePoints, setAvailablePoints, errMsg, setErrMsg }) => {
 
@@ -36,7 +37,7 @@ const AbilityScoreSetter = ({ name, description, availablePoints, setAvailablePo
 
     return (
         <>
-            <Container>
+            <ContainerNoSelect>
                 <Row>
                     <Label>{name}</Label>
                     <Value>{count}</Value>
@@ -44,40 +45,28 @@ const AbilityScoreSetter = ({ name, description, availablePoints, setAvailablePo
                     <Button onClick={increment}>+</Button>
                 </Row>
                 <Description>{description}</Description>
-            </Container>
+            </ContainerNoSelect>
         </>
 
     );
 };
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 1rem;
-`;
-
-const Row = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: -2.0rem;
-`;
-
 const Label = styled.p`
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-right: 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-right: 1rem;
+    color: var(--faint-color);
 `;
 
 const Value = styled.p`
-  font-size: 2rem;
-  margin-right: 1rem;
-  color: var(--faint-color);
+    font-size: 2rem;
+    margin-right: 1rem;
+    color: var(--faint-color);
 `;
 
 const Description = styled.p`
-  font-size: 0.7rem;
-  text-align: center;
+    font-size: 0.7rem;
+    margin-left: auto;
 `;
 
 export default AbilityScoreSetter;

@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Link } from 'react-router-dom';
 import routes from "../../data/routes";
 import { forwardRef } from "react";
+import { Container, Row } from "../../styles/Layout";
 
 const AbilityScores = forwardRef((props, ref) => {
 
@@ -18,9 +19,7 @@ const AbilityScores = forwardRef((props, ref) => {
     return (
         <section ref={ref}>
             <h4>Distribute Ability Scores</h4>
-            {errMsg &&
-                <ErrorMessage>{errMsg}</ErrorMessage>
-            }
+
             <AvailablePointsLabel>
                 Available Points:
                 <AvailablePointsSpan>
@@ -28,8 +27,8 @@ const AbilityScores = forwardRef((props, ref) => {
                 </AvailablePointsSpan>
             </AvailablePointsLabel>
 
-            <Row>
-                <Container>
+            <AbilityScoresRow>
+                <AbilityScoresContainer>
                     <AbilityScoreSetter
                         name="meat"
                         description="physical ability"
@@ -54,10 +53,15 @@ const AbilityScores = forwardRef((props, ref) => {
                         errMsg={errMsg}
                         setErrMsg={setErrMsg}
                     />
-                </Container>
-                <p>dsf fgd gd fg fdg fdg fdg fdg fdg fdg fdg fdgfdgfdgfd gfd gfdg fdg fdgfdg fdg fdgfd sdfdssfd</p>
-            </Row>
-
+                </AbilityScoresContainer>
+                <Text>
+                    <p>Ability scores are key attributes that define your character's strengths and weaknesses. Use the <code>+</code> and <code>-</code> buttons to spend all of your available points. When you have no points remaining you may proceed to the next screen.</p>
+                    <p>In the future I will probably have more advice about how to spend these points.</p>
+                </Text>
+            </AbilityScoresRow>
+            {errMsg &&
+                <ErrorMessage>{errMsg}</ErrorMessage>
+            }
             <nav>
                 <Link className="prev" to={routes.characterCreation}>BACK</Link>
 
@@ -90,22 +94,32 @@ const ErrorMessage = styled.p`
     padding: 0.4rem;
     border: 3px dashed var(--bg-color);
     color: var(--bg-color);
+    left: 50%;
+    transform: translateX(-50%);
 `;
 
-// 
+const breakpoint = '524px'
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 1rem;
-  margin-right: 12rem;
+const AbilityScoresContainer = styled(Container)`
+    margin-right: 2rem;
+    
+    @media (max-width: ${breakpoint}) {
+        margin-right: auto;
+        margin-left: auto;
+    }
 `;
 
-const Row = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: -2.0rem;
+const AbilityScoresRow = styled(Row)`
+    align-items: flex-start;
+
+    @media (max-width: ${breakpoint}) {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+    }
+`;
+
+const Text = styled.div`
+    align-self: flex-start;
 `;
 
 
