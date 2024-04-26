@@ -27,35 +27,41 @@ const AbilityScores = forwardRef((props, ref) => {
                     {availablePoints}
                 </AvailablePointsSpan>
             </AvailablePointsLabel>
-            <AbilityScoreSetter
-                name="meat"
-                description="A measure of your physical ability"
-                availablePoints={availablePoints}
-                setAvailablePoints={setAvailablePoints}
-                errMsg={errMsg}
-                setErrMsg={setErrMsg}
-            />
-            <AbilityScoreSetter
-                name="leet"
-                description="A measure of your mental ability"
-                availablePoints={availablePoints}
-                setAvailablePoints={setAvailablePoints}
-                errMsg={errMsg}
-                setErrMsg={setErrMsg}
-            />
-            <AbilityScoreSetter
-                name="street"
-                description="A measure of your social ability"
-                availablePoints={availablePoints}
-                setAvailablePoints={setAvailablePoints}
-                errMsg={errMsg}
-                setErrMsg={setErrMsg}
-            />
+
+            <Row>
+                <Container>
+                    <AbilityScoreSetter
+                        name="meat"
+                        description="physical ability"
+                        availablePoints={availablePoints}
+                        setAvailablePoints={setAvailablePoints}
+                        errMsg={errMsg}
+                        setErrMsg={setErrMsg}
+                    />
+                    <AbilityScoreSetter
+                        name="leet"
+                        description="mental ability"
+                        availablePoints={availablePoints}
+                        setAvailablePoints={setAvailablePoints}
+                        errMsg={errMsg}
+                        setErrMsg={setErrMsg}
+                    />
+                    <AbilityScoreSetter
+                        name="street"
+                        description="social ability"
+                        availablePoints={availablePoints}
+                        setAvailablePoints={setAvailablePoints}
+                        errMsg={errMsg}
+                        setErrMsg={setErrMsg}
+                    />
+                </Container>
+                <p>dsf fgd gd fg fdg fdg fdg fdg fdg fdg fdg fdgfdgfdgfd gfd gfdg fdg fdgfdg fdg fdgfd sdfdssfd</p>
+            </Row>
 
             <nav>
                 <Link className="prev" to={routes.characterCreation}>BACK</Link>
 
-                {availablePoints == 0 && 
+                {availablePoints == 0 &&
                     <Link className="next" to={routes.characterCreation + "3"}>NEXT</Link>
                 }
             </nav>
@@ -85,6 +91,23 @@ const ErrorMessage = styled.p`
     border: 3px dashed var(--bg-color);
     color: var(--bg-color);
 `;
+
+// 
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem;
+  margin-right: 12rem;
+`;
+
+const Row = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: -2.0rem;
+`;
+
 
 export default AbilityScores
 

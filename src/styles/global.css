@@ -110,7 +110,7 @@ h2::before {
 }
 
 section > h2 ~ * {
-    margin-left: 1em; 
+    margin-left: 0em; 
 }
 
 h3 {
@@ -130,7 +130,7 @@ h3::before {
 }
 
 section > h3 ~ * {
-    margin-left: 2.5em; 
+    margin-left: 0.1em; 
 }
 
 h4 {
@@ -144,7 +144,7 @@ h4::before {
 }
 
 section > h4 ~ * {
-    margin-left: 2em; 
+    margin-left: 0.2em; 
 }
 
 h5 {
@@ -157,7 +157,7 @@ h5::before {
 }
 
 section > h5 ~ * {
-    margin-left: 2.5em;
+    margin-left: 0.25em;
 }
 
 
