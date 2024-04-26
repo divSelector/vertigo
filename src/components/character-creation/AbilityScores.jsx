@@ -4,8 +4,9 @@ import styled from "styled-components";
 import { useState } from "react";
 import { Link } from 'react-router-dom';
 import routes from "../../data/routes";
+import { forwardRef } from "react";
 
-function AbilityScores() {
+const AbilityScores = forwardRef((props, ref) => {
 
     const totalPoints = 6;
     const [availablePoints, setAvailablePoints] = useLocalStorage(
@@ -15,7 +16,7 @@ function AbilityScores() {
     const [errMsg, setErrMsg] = useState('')
 
     return (
-        <section>
+        <section ref={ref}>
             <h4>Distribute Ability Scores</h4>
             {errMsg &&
                 <ErrorMessage>{errMsg}</ErrorMessage>
@@ -60,7 +61,7 @@ function AbilityScores() {
             </nav>
         </section>
     )
-}
+})
 
 const AvailablePointsLabel = styled.p`
     margin-left: 1.5em;

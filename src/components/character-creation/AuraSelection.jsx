@@ -3,8 +3,10 @@ import { SliderContainer, SliderInput } from "../../styles/Slider";
 import game from "../../data/game";
 import routes from "../../data/routes";
 import { useTheme } from "../../context/theme";
+import { forwardRef } from 'react';
 
-function AuraSelection() {
+
+const AuraSelection = forwardRef((props, ref) => {
 
     const { hue, bright, updateHue, updateBright } = useTheme();
 
@@ -58,7 +60,7 @@ function AuraSelection() {
     }
 
     return (
-        <section>
+        <section ref={ref}>
             <h4>Slide the Bars To Find Your Aura</h4>
 
             <SliderContainer>
@@ -98,6 +100,6 @@ function AuraSelection() {
             </nav>
         </section>
     )
-}
+})
 
 export default AuraSelection;

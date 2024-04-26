@@ -4,21 +4,23 @@ import AuraSelection from "./AuraSelection";
 import routes from "../../data/routes";
 import { SwitchTransition, CSSTransition } from "react-transition-group";
 import '../../styles/transitions.css';
+import { useRef } from "react";
 
 const AnimatedCharacterCreationPages = () => {
 
-    const location = useLocation();
-    
+    const location = useLocation(); 
+    const nodeRef = useRef(null);
+
     return (
         <SwitchTransition>
-            <CSSTransition key={location.key} classNames="slide" timeout={200}>
+            <CSSTransition key={location.key} classNames="slide" timeout={200} nodeRef={nodeRef}>
                 {/* The timeout must match the times in transitions.css */}
                 <Routes>
                     <Route path={routes.characterCreation} element={
-                        <AuraSelection />
+                        <AuraSelection ref={nodeRef} />
                     } />
                     <Route path={routes.characterCreation + "2"} element={
-                        <AbilityScores />
+                        <AbilityScores ref={nodeRef} />
                     } />
 
                 </Routes>
