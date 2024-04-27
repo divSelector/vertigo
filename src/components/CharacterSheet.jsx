@@ -8,6 +8,7 @@ const CharacterSheet = ({ character }) => {
     const { position, dragMouseDown } = useDrag();
 
     const spacer = () => <tr><th></th><td colSpan="2"></td></tr>
+    const row = (label, content) => <tr><th>{label}</th><td>{content}</td></tr>
 
     return (
         <div className="character-sheet-container"
@@ -24,10 +25,7 @@ const CharacterSheet = ({ character }) => {
                             <div id="pagin-container"></div>
                         </td>
                     </tr>
-                    <tr>
-                        <th>Gender</th>
-                        <td>{character.gender}</td>
-                    </tr>
+                    {row("Gender", character.gender)}
                     {spacer()}
                     <tr>
                         <th>Aura</th>
@@ -36,14 +34,8 @@ const CharacterSheet = ({ character }) => {
                             <span>{getColorName(character.aura.hue)}</span>
                         </AuraLabel>
                     </tr>
-                    <tr>
-                        <th>Company</th>
-                        <td>{character.company}</td>
-                    </tr>
-                    <tr>
-                        <th>Job Title</th>
-                        <td>{character.jobTitle}</td>
-                    </tr>
+                    {row("Company", character.company)}
+                    {row("Job Title", character.jobTitle)}
                     {/* <tr>
                         <th>Definitions</th>
                         <td colSpan="2">

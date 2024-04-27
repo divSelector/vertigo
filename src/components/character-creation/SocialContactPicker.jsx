@@ -6,7 +6,7 @@ import { forwardRef, useEffect, useState } from 'react';
 import Aura from '../../game/Aura';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import { faker } from '@faker-js/faker';
-import { CharacterNameLabel } from '../CharacterSheet';
+import { CharacterNameLabel } from '../CharacterNameLabel';
 import styled from 'styled-components';
 import { DropdownInput } from '../../styles/DropdownInput';
 

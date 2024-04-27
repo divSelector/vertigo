@@ -20,7 +20,7 @@ export const Row = styled.div`
 export const PopupContainer = styled.div`
   position: fixed;
   top: ${({ top }) => top + 25}px;
-  left: ${({ left, centerAdjust }) => left - centerAdjust}px;
+  left: ${({ left, centeradjust }) => left - centeradjust}px;
   transform: translateX(-50%);
   z-index: 1000;
 `;

@@ -1,5 +1,7 @@
 import usePopup from "../hooks/usePopup";
 import { PopupContainer } from "../styles/Layout";
+import styled from "styled-components";
+import CharacterSheet from "./CharacterSheet";
 
 export const CharacterNameLabel = ({ character }) => {
     const { showPopup, popupPosition, popupRef, handleClick } = usePopup();
@@ -17,7 +19,7 @@ export const CharacterNameLabel = ({ character }) => {
                     top={popupPosition.top} 
                     left={popupPosition.left} 
                     ref={popupRef}
-                    centerAdjust={window.innerWidth < 400 ? window.innerWidth/2 : 200}
+                    centeradjust={window.innerWidth < 400 ? window.innerWidth/2 : 200}
                 >
                     <CharacterSheet character={character} />
                 </PopupContainer>
