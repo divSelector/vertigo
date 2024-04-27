@@ -90,13 +90,13 @@ const GridContainer = styled.div`
   margin-bottom: 0.5em;
 
   @media (max-width: 468px) {
-    grid-template-columns: 1fr; /* Single column layout on smaller screens */
+    grid-template-columns: 1fr;
   }
 `;
 
 const CenteredContainer = styled.div`
   display: flex;
-  justify-content: center; /* Center horizontally */
+  justify-content: center;
 `;
 
 const GridItem = styled.div`

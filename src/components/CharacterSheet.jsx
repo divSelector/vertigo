@@ -73,7 +73,7 @@ export const CharacterNameLabel = ({ character }) => {
     const popupRef = useRef(null);
 
     const handleClick = (e) => {
-        const rect = e.target.getBoundingClientRect(); // Get bounding rect of clicked element
+        const rect = e.target.getBoundingClientRect();
         const clickY = e.clientY - rect.top;
         setShowSheet(true);
         setPopupPosition({ top: clickY + rect.top });
