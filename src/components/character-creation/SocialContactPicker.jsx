@@ -69,6 +69,10 @@ const SocialContactPicker = forwardRef((props, ref) => {
         <section ref={ref}>
             <h4>Select a Social Contact</h4>
             <br />
+            <p>You recently lost your job. An old friend from school works for Vertico Corporation and thinks they can get you a position.</p>
+            <blockquote>You can see more information about characters in draggable popup boxes by clicking their names. The popups will close when you click outside of them.</blockquote>
+            <br />
+
             <CenteredContainer>
                 <GridContainer>
                     {socialContactOptions.map((contact, index) => (
@@ -77,9 +81,7 @@ const SocialContactPicker = forwardRef((props, ref) => {
                 </GridContainer>
             </CenteredContainer>
             <hr />
-
-            <p>You recently lost your job. An old friend from school works for Vertico Corporation and thinks they can get you a position.</p>
-            <p>Select one of the above four NPCs as your social contact. You can see more information about each by clicking on their name. The popup will close when you click outside of it.</p>
+            <p>Select one of the above four NPCs as your social contact.</p>
 
             <DropdownInput onChange={handleOptionChange} value={selectedOptionIndex}>
                 <option disabled value="">Who was your friend?</option>

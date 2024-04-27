@@ -16,3 +16,11 @@ export const Row = styled.div`
   align-items: center;
   margin-bottom: -2.0rem;
 `;
+
+export const PopupContainer = styled.div`
+  position: fixed;
+  top: ${({ top }) => top + 25}px;
+  left: ${({ left, centerAdjust }) => left - centerAdjust}px;
+  transform: translateX(-50%);
+  z-index: 1000;
+`;

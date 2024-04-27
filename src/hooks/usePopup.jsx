@@ -2,14 +2,14 @@ import { useState, useEffect, useRef } from "react";
 
 const usePopup = () => {
     const [showPopup, setShowPopup] = useState(false);
-    const [popupPosition, setPopupPosition] = useState({ top: 0 });
+    const [popupPosition, setPopupPosition] = useState({ top: 0, left: 0 });
     const popupRef = useRef("");
 
     const handleClick = (e) => {
         const rect = e.target.getBoundingClientRect();
         const clickY = e.clientY - rect.top;
         setShowPopup(true);
-        setPopupPosition({ top: clickY + rect.top });
+        setPopupPosition({ top: clickY + rect.top, left: window.innerWidth / 2 });
     };
 
     const handleClickOutside = (e) => {

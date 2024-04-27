@@ -7,11 +7,6 @@ export const useTheme = () => useContext(ThemeContext);
 
 export const ThemeProvider = ({ children }) => {
 
-    const getRootSelectorValue = (key) => {
-        const computedStyle = getComputedStyle(document.documentElement)
-        return parseInt(computedStyle.getPropertyValue(key))
-    }
-
     const [hue, setHue] = useLocalStorage(
         'theme-current-hue',
         getRootSelectorValue('--hue')
@@ -42,8 +37,13 @@ export const ThemeProvider = ({ children }) => {
     const theme = { hue, bright, updateHue, updateBright }
 
     return (
-        <ThemeContext.Provider value={ theme }>
+        <ThemeContext.Provider value={theme}>
             {children}
         </ThemeContext.Provider>
     );
 };
+
+export const getRootSelectorValue = (key) => {
+    const computedStyle = getComputedStyle(document.documentElement)
+    return parseInt(computedStyle.getPropertyValue(key))
+}
