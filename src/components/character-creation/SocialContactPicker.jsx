@@ -2,16 +2,17 @@ import { Link } from 'react-router-dom';
 import game from "../../data/game";
 import routes from "../../data/routes";
 import { useTheme } from "../../context/theme";
-import { forwardRef, useEffect } from 'react';
+import { forwardRef, useEffect, useState } from 'react';
 import Aura from '../../game/Aura';
-import CharacterSheet from '../CharacterSheet';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import { faker } from '@faker-js/faker';
 import { CharacterNameLabel } from '../CharacterSheet';
 import styled from 'styled-components';
-
+import { DropdownInput } from '../../styles/DropdownInput';
 
 const SocialContactPicker = forwardRef((props, ref) => {
+
+    const [selectedOption, setSelectedOption] = useState('');
 
     const { hue, bright } = useTheme();
 
@@ -31,16 +32,23 @@ const SocialContactPicker = forwardRef((props, ref) => {
         const socialContactHue = playerAura.getRandomComplementaryHueInRange();
         const aura = new Aura(socialContactHue, getRandomBright());
 
-        const gender = faker.person.sexType()
+        const sexType = faker.person.sexType()
 
 
         return {
-            name: faker.person.firstName(gender) + " " + faker.person.lastName(),
+            name: faker.person.firstName(sexType) + " " + faker.person.lastName(),
+            description: faker.person.bio(),
+            gender: sexType,
             aura: aura,
-            company: "Vertico",
+            company: "Vertico Corporation",
             jobTitle: faker.person.jobTitle(),
         }
     }
+
+    const handleOptionChange = (e) => {
+        const selectedValue = e.target.value;
+        setSelectedOption(selectedValue);
+    };
 
     useEffect(() => {
         if (!socialContactOptions.length) {
@@ -66,16 +74,22 @@ const SocialContactPicker = forwardRef((props, ref) => {
             </CenteredContainer>
             <hr />
 
-            <p>You recently lost your job. An old friend from school works for Vertico Corporation and thinks they can get you a position. Who was your friend?</p>
-            <p>Select one of the above four NPCs as your social contact. You can see more information about each by clicking on their name.</p>
+            <p>You recently lost your job. An old friend from school works for Vertico Corporation and thinks they can get you a position.</p>
+            <p>Select one of the above four NPCs as your social contact. You can see more information about each by clicking on their name. The popup will close when you click outside of it.</p>
 
+            <DropdownInput onChange={handleOptionChange} value={selectedOption}>
+                <option disabled value="">Who was your friend?</option>
+                {socialContactOptions.map((contact, index) => (
+                    <option value={index} key={index}>{contact.name}</option>
+                ))}
+            </DropdownInput>
 
             <nav>
                 <Link className="prev" to={routes.characterCreation + "2"}>BACK</Link>
 
-                {/* {availablePoints == 0 &&
+                {selectedOption &&
                     <Link className="next" to={routes.characterCreation + "4"}>NEXT</Link>
-                } */}
+                }
             </nav>
         </section>
     )

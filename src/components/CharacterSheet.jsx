@@ -17,9 +17,13 @@ const CharacterSheet = ({ character }) => {
                         <th>Name</th>
                         <td>
                             <NameLabel hue={character.aura.hue}>{character.name}</NameLabel>
-                            <i>{description}</i>
+                            <i>{character.description}</i>
                             <div id="pagin-container"></div>
                         </td>
+                    </tr>
+                    <tr>
+                        <th>Gender</th>
+                        <td>{character.gender}</td>
                     </tr>
                     {spacer()}
                     <tr>
