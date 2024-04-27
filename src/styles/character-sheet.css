@@ -1,5 +1,4 @@
 .character-sheet-container {
-    /* position: absolute; */
     max-width: 600px;
     top: 254px;
     user-select: none;
@@ -23,7 +22,6 @@ table.character-sheet {
     color: white;
     border: 1px solid white;
     font-size: 80%;
-    margin: 1em;
     padding: 0.5em;
 }
 

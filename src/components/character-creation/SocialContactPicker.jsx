@@ -6,6 +6,10 @@ import { forwardRef, useEffect } from 'react';
 import Aura from '../../game/Aura';
 import CharacterSheet from '../CharacterSheet';
 import useLocalStorage from '../../hooks/useLocalStorage';
+import { faker } from '@faker-js/faker';
+import { CharacterNameLabel } from '../CharacterSheet';
+import styled from 'styled-components';
+
 
 const SocialContactPicker = forwardRef((props, ref) => {
 
@@ -13,35 +17,58 @@ const SocialContactPicker = forwardRef((props, ref) => {
 
     const playerAura = new Aura(hue, bright)
 
+    const [socialContactOptions, setSocialContactOptions] = useLocalStorage(
+        'character-creation-random-social-contact-options',
+        []
+    );
+
     const getRandomBright = () => {
         return Math.floor(Math.random() * 20) + 1;
     }
 
-    const [socialContactAuras, setSocialContactAuras] = useLocalStorage(
-        'character-creation-random-social-contact-auras',
-        []
-    );
+    const getFakeSocialContact = () => {
+
+        const socialContactHue = playerAura.getRandomComplementaryHueInRange();
+        const aura = new Aura(socialContactHue, getRandomBright());
+
+        const gender = faker.person.sexType()
+
+
+        return {
+            name: faker.person.firstName(gender) + " " + faker.person.lastName(),
+            aura: aura,
+            company: "Vertico",
+            jobTitle: faker.person.jobTitle(),
+        }
+    }
 
     useEffect(() => {
-        if (!socialContactAuras.length) {
-            let newAuras = [];
+        if (!socialContactOptions.length) {
+            let newSocialContactOptions = [];
             for (let i = 0; i < 4; i++) {
-                const socialContactHue = playerAura.getRandomComplementaryHueInRange();
-                const newAura = new Aura(socialContactHue, getRandomBright());
-                newAuras.push(newAura);
+                const socialContact = getFakeSocialContact();
+                newSocialContactOptions.push(socialContact);
             }
-            setSocialContactAuras(newAuras);
+            setSocialContactOptions(newSocialContactOptions);
         }
     }, []);
-
 
     return (
         <section ref={ref}>
             <h4>Select a Social Contact</h4>
+            <br />
+            <CenteredContainer>
+                <GridContainer>
+                    {socialContactOptions.map((contact, index) => (
+                        <CharacterNameLabel key={index} character={contact} />
+                    ))}
+                </GridContainer>
+            </CenteredContainer>
+            <hr />
 
-            {socialContactAuras.map((aura, index) => (
-                <CharacterSheet key={index} aura={aura} />
-            ))}
+            <p>You recently lost your job. An old friend from school works for Vertico Corporation and thinks they can get you a position. Who was your friend?</p>
+            <p>Select one of the above four NPCs as your social contact. You can see more information about each by clicking on their name.</p>
+
 
             <nav>
                 <Link className="prev" to={routes.characterCreation + "2"}>BACK</Link>
@@ -53,6 +80,29 @@ const SocialContactPicker = forwardRef((props, ref) => {
         </section>
     )
 })
+
+const GridContainer = styled.div`
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px 20px;
+  justify-content: center;
+  margin: 0 auto;
+  margin-bottom: 0.5em;
+
+  @media (max-width: 468px) {
+    grid-template-columns: 1fr; /* Single column layout on smaller screens */
+  }
+`;
+
+const CenteredContainer = styled.div`
+  display: flex;
+  justify-content: center; /* Center horizontally */
+`;
+
+const GridItem = styled.div`
+  width: 100%;
+`;
+
 
 export default SocialContactPicker;
 

@@ -1,15 +1,11 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { getColorName, getBrightName } from "../game/Aura";
 
 
-const CharacterSheet = ({ aura }) => {
+const CharacterSheet = ({ character }) => {
 
-    const name = "sdfdsfsd"
-    const description = "sdfdsfsdfdf"
-
-    const [hue, setHue] = useState(aura.hue);
-    const [bright, setBright] = useState(aura.bright);
+    const description = "dfs fdsf dsf dsffd sfds fd dsf fdsf dsf sf  fdsf dsf ds dds ds dsf dsf dsf dsfd sf dsf dsf dsf sf dsfd sfdsf dsf dsfd fds "
 
     const spacer = () => <tr><th></th><td colSpan="2"></td></tr>
 
@@ -20,7 +16,7 @@ const CharacterSheet = ({ aura }) => {
                     <tr>
                         <th>Name</th>
                         <td>
-                            <NameLabel hue={hue}>{name}</NameLabel>
+                            <NameLabel hue={character.aura.hue}>{character.name}</NameLabel>
                             <i>{description}</i>
                             <div id="pagin-container"></div>
                         </td>
@@ -28,10 +24,18 @@ const CharacterSheet = ({ aura }) => {
                     {spacer()}
                     <tr>
                         <th>Aura</th>
-                        <AuraLabel hue={hue} bright={bright} colSpan={2}>
-                            <span>{getBrightName(aura.bright)}</span>
-                            <span>{getColorName(aura.hue)}</span>
+                        <AuraLabel hue={character.aura.hue} bright={character.aura.bright} colSpan={2}>
+                            <span>{getBrightName(character.aura.bright)}</span>
+                            <span>{getColorName(character.aura.hue)}</span>
                         </AuraLabel>
+                    </tr>
+                    <tr>
+                        <th>Company</th>
+                        <td>{character.company}</td>
+                    </tr>
+                    <tr>
+                        <th>Job Title</th>
+                        <td>{character.jobTitle}</td>
                     </tr>
                     {/* <tr>
                         <th>Definitions</th>
@@ -48,7 +52,66 @@ const CharacterSheet = ({ aura }) => {
     );
 };
 
-const NameLabel = styled.span`
+
+const CharacterNameLabelContainer = styled.div`
+  position: relative;
+  display: inline-block;
+`;
+
+const CharacterSheetPopup = styled.div`
+  position: fixed;
+  top: ${({ top }) => top}px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 100vw;
+  z-index: 1000;
+`;
+
+export const CharacterNameLabel = ({ character }) => {
+    const [showSheet, setShowSheet] = useState(false);
+    const [popupPosition, setPopupPosition] = useState({ top: 0 });
+    const popupRef = useRef(null);
+
+    const handleClick = (e) => {
+        const rect = e.target.getBoundingClientRect(); // Get bounding rect of clicked element
+        const clickY = e.clientY - rect.top;
+        setShowSheet(true);
+        setPopupPosition({ top: clickY + rect.top });
+    };
+
+    const handleClickOutside = (e) => {
+        console.log("Click outside called")
+        if (popupRef.current && !popupRef.current.contains(e.target)) {
+            console.log("if block condition met")
+            setShowSheet(false);
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
+    return (
+        <CharacterNameLabelContainer>
+            <div>
+                <NameLabel hue={character.aura.hue} onClick={handleClick}>
+                    {character.name}
+                </NameLabel>
+            </div>
+
+            {showSheet && (
+                <CharacterSheetPopup top={popupPosition.top} ref={popupRef} >
+                    <CharacterSheet character={character} />
+                </CharacterSheetPopup>
+            )}
+        </CharacterNameLabelContainer>
+    );
+};
+
+const NameLabel = styled.div`
     background-color: ${({ hue }) => `hsl(${hue}, 100%, 10%)`};
     border: 1px solid ${({ hue }) => `hsl(${hue}, 100%, 80%)`};
     color: ${({ hue }) => `hsl(${hue}, 100%, 90%)`};
@@ -56,6 +119,7 @@ const NameLabel = styled.span`
     padding: 0.3em 0.5em;
     margin-right: 0.3em;
     font-weight: normal;
+    width: 95%;
 `;
 
 const AuraLabel = styled.td`

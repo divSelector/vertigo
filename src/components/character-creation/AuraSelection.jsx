@@ -11,14 +11,14 @@ const AuraSelection = forwardRef((props, ref) => {
 
     const { hue, bright, updateHue, updateBright } = useTheme();
 
-    const [socialContactAuras, setSocialContactAuras] = useLocalStorage(
-        'character-creation-random-social-contact-auras',
+    const [socialContactOptions, setSocialContactOptions] = useLocalStorage(
+        'character-creation-random-social-contact-options',
         []
     );
 
     const handleHueChange = (event) => {
         const newHue = parseInt(event.target.value);
-        setSocialContactAuras([])
+        setSocialContactOptions([])
         updateHue(newHue)
     }
 
