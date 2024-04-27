@@ -12,7 +12,8 @@ import { DropdownInput } from '../../styles/DropdownInput';
 
 const SocialContactPicker = forwardRef((props, ref) => {
 
-    const [selectedOption, setSelectedOption] = useState('');
+    const [selectedOptionIndex, setSelectedOptionIndex] = useState('');
+    const [selectedContact, setSelectedContact] = useState(null);
 
     const { hue, bright } = useTheme();
 
@@ -47,7 +48,10 @@ const SocialContactPicker = forwardRef((props, ref) => {
 
     const handleOptionChange = (e) => {
         const selectedValue = e.target.value;
-        setSelectedOption(selectedValue);
+        setSelectedOptionIndex(selectedValue);
+
+        const contact = socialContactOptions[selectedValue];
+        setSelectedContact(contact);
     };
 
     useEffect(() => {
@@ -77,7 +81,7 @@ const SocialContactPicker = forwardRef((props, ref) => {
             <p>You recently lost your job. An old friend from school works for Vertico Corporation and thinks they can get you a position.</p>
             <p>Select one of the above four NPCs as your social contact. You can see more information about each by clicking on their name. The popup will close when you click outside of it.</p>
 
-            <DropdownInput onChange={handleOptionChange} value={selectedOption}>
+            <DropdownInput onChange={handleOptionChange} value={selectedOptionIndex}>
                 <option disabled value="">Who was your friend?</option>
                 {socialContactOptions.map((contact, index) => (
                     <option value={index} key={index}>{contact.name}</option>
@@ -87,7 +91,7 @@ const SocialContactPicker = forwardRef((props, ref) => {
             <nav>
                 <Link className="prev" to={routes.characterCreation + "2"}>BACK</Link>
 
-                {selectedOption &&
+                {selectedContact &&
                     <Link className="next" to={routes.characterCreation + "4"}>NEXT</Link>
                 }
             </nav>

@@ -1,16 +1,20 @@
 import styled from "styled-components";
 import { useState, useEffect, useRef } from "react";
 import { getColorName, getBrightName } from "../game/Aura";
-
+import usePopup from "../hooks/usePopup";
+import useDrag from "../hooks/useDrag";
 
 const CharacterSheet = ({ character }) => {
 
-    const description = "dfs fdsf dsf dsffd sfds fd dsf fdsf dsf sf  fdsf dsf ds dds ds dsf dsf dsf dsfd sf dsf dsf dsf sf dsfd sfdsf dsf dsfd fds "
+    const { position, dragMouseDown } = useDrag();
 
     const spacer = () => <tr><th></th><td colSpan="2"></td></tr>
 
     return (
-        <div className="character-sheet-container">
+        <div className="character-sheet-container"
+             style={{ position: 'absolute', top: position.y, left: position.x }}
+             onMouseDown={dragMouseDown}
+        >
             <table className="character-sheet">
                 <tbody>
                     <tr>
@@ -64,39 +68,12 @@ const CharacterNameLabelContainer = styled.div`
 
 const CharacterSheetPopup = styled.div`
   position: fixed;
-  top: ${({ top }) => top}px;
-  left: 50%;
-  transform: translateX(-50%);
-  max-width: 100vw;
+  top: ${({ top }) => top + 25}px;
   z-index: 1000;
 `;
 
 export const CharacterNameLabel = ({ character }) => {
-    const [showSheet, setShowSheet] = useState(false);
-    const [popupPosition, setPopupPosition] = useState({ top: 0 });
-    const popupRef = useRef(null);
-
-    const handleClick = (e) => {
-        const rect = e.target.getBoundingClientRect();
-        const clickY = e.clientY - rect.top;
-        setShowSheet(true);
-        setPopupPosition({ top: clickY + rect.top });
-    };
-
-    const handleClickOutside = (e) => {
-        console.log("Click outside called")
-        if (popupRef.current && !popupRef.current.contains(e.target)) {
-            console.log("if block condition met")
-            setShowSheet(false);
-        }
-    };
-
-    useEffect(() => {
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, []);
+    const { showPopup, popupPosition, popupRef, handleClick } = usePopup();
 
     return (
         <CharacterNameLabelContainer>
@@ -106,8 +83,8 @@ export const CharacterNameLabel = ({ character }) => {
                 </NameLabel>
             </div>
 
-            {showSheet && (
-                <CharacterSheetPopup top={popupPosition.top} ref={popupRef} >
+            {showPopup && (
+                <CharacterSheetPopup top={popupPosition.top} ref={popupRef}>
                     <CharacterSheet character={character} />
                 </CharacterSheetPopup>
             )}

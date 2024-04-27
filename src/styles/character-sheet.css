@@ -2,6 +2,7 @@
     max-width: 600px;
     top: 254px;
     user-select: none;
+    width: 100vw;
 }
 
 #character-sheet-container > table:first-child {
@@ -23,6 +24,9 @@ table.character-sheet {
     border: 1px solid white;
     font-size: 80%;
     padding: 0.5em;
+    width: 40vw;
+
+    
 }
 
 .character-sheet th.header {
