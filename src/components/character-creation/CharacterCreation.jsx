@@ -6,6 +6,7 @@ import { SwitchTransition, CSSTransition } from "react-transition-group";
 import '../../styles/transitions.css';
 import { useRef } from "react";
 import SocialContactPicker from "./SocialContactPicker";
+import NameAndPronouns from "./NameAndPronouns";
 
 const AnimatedCharacterCreationPages = () => {
 
@@ -25,6 +26,9 @@ const AnimatedCharacterCreationPages = () => {
                     } />
                     <Route path={routes.characterCreation + "3"} element={
                         <SocialContactPicker ref={nodeRef} />
+                    } />
+                    <Route path={routes.characterCreation + "4"} element={
+                        <NameAndPronouns ref={nodeRef} />
                     } />
 
                 </Routes>

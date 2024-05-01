@@ -12,9 +12,8 @@ import { DropdownInput } from '../../styles/DropdownInput';
 
 const SocialContactPicker = forwardRef((props, ref) => {
 
-    const [selectedOptionIndex, setSelectedOptionIndex] = useState('');
-    const [selectedContact, setSelectedContact] = useState(null);
-
+    const [selectedContact, setSelectedContact] = useLocalStorage('character-creation-selected-contact', null);
+    const [selectedOptionIndex, setSelectedOptionIndex]= useLocalStorage('character-creation-selected-contact-index', ''); 
     const { hue, bright } = useTheme();
 
     const playerAura = new Aura(hue, bright)
