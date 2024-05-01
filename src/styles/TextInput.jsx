@@ -22,7 +22,7 @@ export const TextInput = styled.input`
     }
 
     @media (max-width: 400px) {
-        min-width: 90%; 
+        width: 90%; 
     }
 
     @media (min-width: 401px) {

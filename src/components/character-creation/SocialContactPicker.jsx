@@ -45,11 +45,7 @@ const SocialContactPicker = forwardRef((props, ref) => {
     }
 
     const handleOptionChange = (e) => {
-        const selectedValue = e.target.value;
-        setSelectedOptionIndex(selectedValue);
-
         const contact = socialContactOptions[e.target.value];
-        console.log(contact)
         setSelectedContact(contact);
     };
 
