@@ -13,7 +13,6 @@ import { DropdownInput } from '../../styles/DropdownInput';
 const SocialContactPicker = forwardRef((props, ref) => {
 
     const [selectedContact, setSelectedContact] = useLocalStorage('character-creation-selected-contact', null);
-    const [selectedOptionIndex, setSelectedOptionIndex]= useLocalStorage('character-creation-selected-contact-index', ''); 
     const { hue, bright } = useTheme();
 
     const playerAura = new Aura(hue, bright)
@@ -49,7 +48,8 @@ const SocialContactPicker = forwardRef((props, ref) => {
         const selectedValue = e.target.value;
         setSelectedOptionIndex(selectedValue);
 
-        const contact = socialContactOptions[selectedValue];
+        const contact = socialContactOptions[e.target.value];
+        console.log(contact)
         setSelectedContact(contact);
     };
 
@@ -58,6 +58,7 @@ const SocialContactPicker = forwardRef((props, ref) => {
             let newSocialContactOptions = [];
             for (let i = 0; i < 4; i++) {
                 const socialContact = getFakeSocialContact();
+                socialContact.index = i;
                 newSocialContactOptions.push(socialContact);
             }
             setSocialContactOptions(newSocialContactOptions);
@@ -82,7 +83,7 @@ const SocialContactPicker = forwardRef((props, ref) => {
             <hr />
             <p>Select one of the above four NPCs as your social contact.</p>
 
-            <DropdownInput onChange={handleOptionChange} value={selectedOptionIndex}>
+            <DropdownInput onChange={handleOptionChange} value={selectedContact ? selectedContact.index : ''}>
                 <option disabled value="">Who was your friend?</option>
                 {socialContactOptions.map((contact, index) => (
                     <option value={index} key={index}>{contact.name}</option>
