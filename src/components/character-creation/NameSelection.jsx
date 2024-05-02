@@ -17,6 +17,7 @@ const NameSelection = forwardRef((props, ref) => {
 
     return (
         <section ref={ref}>
+            <h2>Character Creation</h2>
             <h4>What is your name?</h4>
             <TextInput
                 type="text"

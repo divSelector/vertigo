@@ -18,6 +18,7 @@ const AbilityScores = forwardRef((props, ref) => {
 
     return (
         <section ref={ref}>
+            <h2>Character Creation</h2>
             <h4>Distribute Ability Scores</h4>
 
             <AvailablePointsLabel>

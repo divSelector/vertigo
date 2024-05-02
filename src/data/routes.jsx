@@ -1,5 +1,6 @@
 const routes = {
-    characterCreation: '/new/'
+    characterCreation: '/new/',
+    audioTest: '/audio/'
 }
 
 export default routes;

@@ -31,6 +31,7 @@ const AuraSelection = forwardRef((props, ref) => {
 
     return (
         <section ref={ref}>
+            <h2>Character Creation</h2>
             <h4>Slide the Bars To Find Your Aura</h4>
 
             <SliderContainer>

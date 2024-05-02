@@ -63,6 +63,7 @@ const SocialContactPicker = forwardRef((props, ref) => {
 
     return (
         <section ref={ref}>
+            <h2>Character Creation</h2>
             <h4>Select a Social Contact</h4>
             <br />
             <p>You recently lost your job. An old friend from school works for Vertico Corporation and thinks they can get you a position.</p>
