@@ -47,20 +47,20 @@ class Audio {
         }
         this.loadAudioFile(src)
             .then((buffer) => {
-                var source = this.audioContext.createBufferSource();
+                const source = this.audioContext.createBufferSource();
                 source.buffer = buffer;
                 source.loop = true;
 
-                var envelope = this.audioContext.createGain();
+                const envelope = this.audioContext.createGain();
                 envelope.gain.setValueAtTime(0.0, this.audioContext.currentTime);
 
-                var fadeTime = this.audioContext.currentTime + this.FADETIME;
+                const fadeTime = this.audioContext.currentTime + this.FADETIME;
 
                 // fade out current background music
                 if (this.currentBackgroundMusic &&
                     this.currentBackgroundMusic.source &&
                     this.currentBackgroundMusic.source.playbackState !== 0) {
-                    var currentBackgroundGainValue = this.currentBackgroundMusic.envelope.gain.value;
+                    const currentBackgroundGainValue = this.currentBackgroundMusic.envelope.gain.value;
                     this.currentBackgroundMusic.envelope.gain.cancelScheduledValues(this.audioContext.currentTime);
                     this.currentBackgroundMusic.envelope.gain.setValueAtTime(currentBackgroundGainValue, this.audioContext.currentTime);
                     this.currentBackgroundMusic.envelope.gain.linearRampToValueAtTime(0.0, fadeTime);
@@ -88,18 +88,18 @@ class Audio {
         }
         this.loadAudioFile(src)
             .then((buffer) => {
-                var source = this.audioContext.createBufferSource();
+                const source = this.audioContext.createBufferSource();
                 source.buffer = buffer;
                 source.loop = true;
 
-                var envelope = this.audioContext.createGain();
+                const envelope = this.audioContext.createGain();
                 envelope.gain.setValueAtTime(0.0, this.audioContext.currentTime);
 
-                var fadeTime = this.audioContext.currentTime + this.FADETIME * 2;
+                const fadeTime = this.audioContext.currentTime + this.FADETIME * 2;
 
                 // turn down current background music
                 if (this.currentBackgroundMusic != null) {
-                    var currentBackgroundGainValue = this.currentBackgroundMusic.envelope.gain.value;
+                    const currentBackgroundGainValue = this.currentBackgroundMusic.envelope.gain.value;
                     this.currentBackgroundMusic.envelope.gain.cancelScheduledValues(this.audioContext.currentTime);
                     this.currentBackgroundMusic.envelope.gain.setValueAtTime(currentBackgroundGainValue, this.audioContext.currentTime);
                     this.currentBackgroundMusic.envelope.gain.linearRampToValueAtTime(0.2, fadeTime);
@@ -122,13 +122,13 @@ class Audio {
         if (!this.initialized) {
             return;
         }
-        var fadeTime = this.audioContext.currentTime + this.FADETIME * 2;
+        const fadeTime = this.audioContext.currentTime + this.FADETIME * 2;
 
         // fade out event music and stop
         if (this.currentEventAudio &&
             this.currentEventAudio.source &&
             this.currentEventAudio.source.buffer) {
-            var currentEventGainValue = this.currentEventAudio.envelope.gain.value;
+            const currentEventGainValue = this.currentEventAudio.envelope.gain.value;
             this.currentEventAudio.envelope.gain.cancelScheduledValues(this.audioContext.currentTime);
             this.currentEventAudio.envelope.gain.setValueAtTime(currentEventGainValue, this.audioContext.currentTime);
             this.currentEventAudio.envelope.gain.linearRampToValueAtTime(0.0, fadeTime);
@@ -138,11 +138,11 @@ class Audio {
 
         // fade in background music at initial volume
         if (this.currentBackgroundMusic) {
-            var currentBackgroundGainValue = this.currentBackgroundMusic.envelope.gain.value;
+            const currentBackgroundGainValue = this.currentBackgroundMusic.envelope.gain.value;
             this.currentBackgroundMusic.envelope.gain.cancelScheduledValues(this.audioContext.currentTime);
             this.currentBackgroundMusic.envelope.gain.setValueAtTime(currentBackgroundGainValue, this.audioContext.currentTime);
 
-            var initialVolume = this.currentBackgroundVolume || 1.0;
+            const initialVolume = this.currentBackgroundVolume || 1.0;
             console.log("Initial Volume:", initialVolume);
             this.currentBackgroundMusic.envelope.gain.linearRampToValueAtTime(initialVolume, fadeTime);
         }
@@ -154,10 +154,10 @@ class Audio {
         }
         this.loadAudioFile(src)
             .then((buffer) => {
-                var source = this.audioContext.createBufferSource();
+                const source = this.audioContext.createBufferSource();
                 source.buffer = buffer;
         
-                var gainNode = this.audioContext.createGain();
+                const gainNode = this.audioContext.createGain();
                 gainNode.gain.value = volume;
         
                 source.connect(gainNode);
@@ -183,7 +183,7 @@ class Audio {
                 resolve(this.AUDIOBUFFERCACHE[src]);
             });
         } else {
-            var request = new Request(src);
+            const request = new Request(src);
             return fetch(request)
                 .then((response) => response.arrayBuffer())
                 .then((buffer) => {
@@ -191,7 +191,7 @@ class Audio {
                         console.error('cannot load audio from ' + src);
                     }
 
-                    var decodeAudioDataPromise = this.audioContext.decodeAudioData(buffer, (decodedData) => {
+                    const decodeAudioDataPromise = this.audioContext.decodeAudioData(buffer, (decodedData) => {
                         this.AUDIOBUFFERCACHE[src] = decodedData;
                         return this.AUDIOBUFFERCACHE[src];
                     });
@@ -203,7 +203,7 @@ class Audio {
                         return decodeAudioDataPromise;
                     } else {
                         return new Promise((resolve) => {
-                            var fakePromiseId = setInterval(() => {
+                            const fakePromiseId = setInterval(() => {
                                 if (this.AUDIOBUFFERCACHE[src]) {
                                     resolve(this.AUDIOBUFFERCACHE[src]);
                                     clearInterval(fakePromiseId);
@@ -225,7 +225,7 @@ class Audio {
         }
 
         // cancel any current schedules and then ramp
-        var currentBackgroundGainValue = this.currentBackgroundMusic.envelope.gain.value;
+        const currentBackgroundGainValue = this.currentBackgroundMusic.envelope.gain.value;
         this.currentBackgroundMusic.envelope.gain.cancelScheduledValues(this.audioContext.currentTime);
         this.currentBackgroundMusic.envelope.gain.setValueAtTime(currentBackgroundGainValue, this.audioContext.currentTime);
         this.currentBackgroundMusic.envelope.gain.linearRampToValueAtTime(
@@ -244,7 +244,7 @@ class Audio {
         }
 
         // cancel any current schedules and then ramp
-        var currentGainValue = this.master.gain.value;
+        const currentGainValue = this.master.gain.value;
         this.master.gain.cancelScheduledValues(this.audioContext.currentTime);
         this.master.gain.setValueAtTime(currentGainValue, this.audioContext.currentTime);
         this.master.gain.linearRampToValueAtTime(

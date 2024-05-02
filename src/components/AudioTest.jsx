@@ -14,8 +14,6 @@ const AudioTest = forwardRef((props, ref) => {
 
     const playSound = () => {
         audio.playSound('/src/assets/audio/sfx/sound.flac', 3.0)
-
-        audio.setMasterVolume(2.0, 0)
     }
 
     return (
