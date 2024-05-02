@@ -1,13 +1,45 @@
+.orbit-wrapper {
+    position: fixed;
+    width: 800px;
+    height: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .planet-graphic {
+    width: 600px;
     height: 600px;
     border-radius: 70%;
-    box-shadow: inset 0 0 50px hsla(var(--hue), 100%, 89%, 1), 
-                inset 20px 0 80px hsla(var(--hue), 100%, 20%, 1), 
-                inset -20px 0 80px hsla(var(--hue), 50%, 40%, 1), 
-                inset 20px 0 300px hsla(var(--hue), 50%, 60%, 0.5), 
-                inset -20px 0 300px hsla(var(--hue), 50%, 30%, 0.5), 
-                0 0 50px hsla(var(--hue), 100%, 89%, 1), 
-                -10px 0 80px hsla(var(--hue), 50%, 50%, 1), 
+    box-shadow: inset 0 0 50px hsla(var(--hue), 100%, 89%, 1),
+                inset 20px 0 80px hsla(var(--hue), 100%, 20%, 1),
+                inset -20px 0 80px hsla(var(--hue), 50%, 40%, 1),
+                inset 20px 0 300px hsla(var(--hue), 50%, 60%, 0.5),
+                inset -20px 0 300px hsla(var(--hue), 50%, 30%, 0.5),
+                0 0 50px hsla(var(--hue), 100%, 89%, 1),
+                -10px 0 80px hsla(var(--hue), 50%, 50%, 1),
                 10px 0 80px hsla(var(--hue), 50%, 25%, 0.25);
-    margin-right: 30px;
+    animation: rotatePlanet 10s linear infinite;
+}
+
+.space-station {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-image: url('/public/spacestation.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    filter: blur(2px) grayscale(80%);;
+    animation: orbit 60s linear infinite; /* Slower animation speed */
+}
+
+@keyframes rotatePlanet {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes orbit {
+    0% { transform: rotate(0deg) translateX(600px); } /* Increased orbit radius */
+    100% { transform: rotate(360deg) translateX(600px); }
 }

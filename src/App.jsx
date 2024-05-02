@@ -10,6 +10,8 @@ import routes from "./data/routes";
 import { SwitchTransition, CSSTransition } from "react-transition-group";
 import './styles/transitions.css';
 import { useRef } from "react";
+import TitleScreen from "./components/TitleScreen";
+
 
 const AnimatedPages = () => {
 
@@ -21,6 +23,9 @@ const AnimatedPages = () => {
       <CSSTransition key={location.key} classNames="slide" timeout={200} nodeRef={nodeRef}>
         {/* The timeout must match the times in transitions.css */}
         <Routes>
+          <Route exact path={'/'} element={
+            <TitleScreen ref={nodeRef} />
+          } />
           <Route path={routes.characterCreation} element={
             <AuraSelection ref={nodeRef} />
           } />

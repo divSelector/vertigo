@@ -19,14 +19,12 @@ const AudioTest = forwardRef((props, ref) => {
     return (
         <section ref={ref}>
 
-            <div className="planet-graphic"></div>
-
             <div>
                 <h2>Audio Test</h2>
 
-                    <button onClick={playBGMusic}>Start Background Music</button><br />
-                    <button onClick={toggleEventMusic}>Toggle Event Music</button><br />
-                    <button onClick={playSound}>Play Sound Effect</button><br />
+                <button onClick={playBGMusic}>Start Background Music</button><br />
+                <button onClick={toggleEventMusic}>Toggle Event Music</button><br />
+                <button onClick={playSound}>Play Sound Effect</button><br />
             </div>
         </section>
     )

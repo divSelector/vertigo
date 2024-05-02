@@ -67,6 +67,7 @@ const AuraSelection = forwardRef((props, ref) => {
 
 
             <nav>
+                <Link className="prev" to={"/"}>BACK</Link>
                 <Link className="next" to={routes.characterCreation + "2"}>NEXT</Link>
             </nav>
         </section>
