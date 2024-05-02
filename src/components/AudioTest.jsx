@@ -18,6 +18,9 @@ const AudioTest = forwardRef((props, ref) => {
 
     return (
         <section ref={ref}>
+
+            <div className="planet-graphic"></div>
+
             <div>
                 <h2>Audio Test</h2>
 
