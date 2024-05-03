@@ -496,8 +496,8 @@ aside::before {
     @supports (position: fixed) {
         .endnote {
             position: fixed;
-            display: none;
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            display: block;
+            border: 1px solid var(--faint-color);
             background-color: hsl(var(--hue), 61%, 15%);
             --box-shadow-color: hsla(var(--hue), 54%, 30%, 0.7);
             box-shadow: 0 0 40px 0 var(--box-shadow-color);
@@ -506,10 +506,6 @@ aside::before {
             max-width: calc(var(--width) + 2em);
             margin: auto;
         }
-    }
-
-    .endnote:target {
-        display: block;
     }
 
     .endnote>* {
@@ -536,8 +532,8 @@ aside::before {
 
     @supports (position: fixed) {
 
-        .endnote .ui a[href],
-        .endnote a.ui[href] {
+        .endnote .ui a,
+        .endnote a.ui {
             text-decoration: none;
             font-weight: bold;
         }
@@ -552,16 +548,16 @@ aside::before {
             padding: 0.1em .5em;
         }
 
-        .endnote a[href].ui {
+        .endnote a.ui {
             background: hsl(var(--hue), 51%, 5%) !important;
             cursor: default;
         }
 
-        .endnote a[href].ui:hover {
+        .endnote a.ui:hover {
             border-style: outset;
         }
 
-        .endnote a[href].ui:active {
+        .endnote a.ui:active {
             border-style: inset;
         }
     }

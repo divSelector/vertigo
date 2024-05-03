@@ -41,7 +41,7 @@ class Audio {
         this.master.connect(this.audioContext.destination);
     }
 
-    playBackgroundMusic(src, volume = 1.0) {
+    playBackgroundMusic({src, volume = 1.0}) {
         if (!this.initialized) {
             return;
         }
@@ -82,7 +82,7 @@ class Audio {
             });
     }
 
-    playEventMusic(src, volume = 1.0) {
+    playEventMusic({src, volume = 1.0}) {
         if (!this.initialized) {
             return;
         }
@@ -148,7 +148,7 @@ class Audio {
         }
     }
 
-    playSound(src, volume = 1.0) {
+    playSound({src, volume = 1.0}) {
         if (!this.initialized) {
             return;
         }

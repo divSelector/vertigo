@@ -1,33 +1,41 @@
 import audio from "../game/Audio";
 import { forwardRef } from "react";
+import { Row } from "../styles/Layout";
+import { Button } from "../styles/Button";
+import styled from "styled-components";
+import audioManifest from "../assets/audio/manifest";
 
 const AudioTest = forwardRef((props, ref) => {
 
     const playBGMusic = () => {
-        audio.playBackgroundMusic('/src/assets/audio/bgm/neon_world.mp3', 0.75);
+        audio.playBackgroundMusic(audioManifest.NEON_WORLD);
     };
 
     const toggleEventMusic = () => {
-        if (!audio.currentEventAudio) audio.playEventMusic('/src/assets/audio/event/W96_ALONEARMED.mp3', 1.0);
+        if (!audio.currentEventAudio) audio.playEventMusic(audioManifest.W96_ALONEARMED);
         else audio.stopEventMusic()
     }
 
     const playSound = () => {
-        audio.playSound('/src/assets/audio/sfx/sound.flac', 3.0)
+        audio.playSound(audioManifest.SOUND)
     }
 
     return (
         <section ref={ref}>
 
-            <div>
-                <h2>Audio Test</h2>
+            <Row style={{width: '80%', marginBottom: '-1em'}}>
+                <h3 style={{marginRight: '3em'}}>Audio </h3>
 
-                <button onClick={playBGMusic}>Start Background Music</button><br />
-                <button onClick={toggleEventMusic}>Toggle Event Music</button><br />
-                <button onClick={playSound}>Play Sound Effect</button><br />
-            </div>
+                <AudioTestButton onClick={playBGMusic}>Start BGM</AudioTestButton><br />
+                <AudioTestButton onClick={toggleEventMusic}>Toggle Event</AudioTestButton><br />
+                <AudioTestButton onClick={playSound}>Play SFX</AudioTestButton><br />
+            </Row>
         </section>
     )
 })
+
+const AudioTestButton = styled(Button)`
+    font-size: 80%;
+`;
 
 export default AudioTest
