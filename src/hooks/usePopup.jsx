@@ -1,9 +1,12 @@
 import { useState, useEffect, useRef } from "react";
+import useDrag from "./useDrag";
 
 const usePopup = () => {
     const [showPopup, setShowPopup] = useState(false);
     const [popupPosition, setPopupPosition] = useState({ top: 0, left: 0 });
     const popupRef = useRef("");
+
+    const { position, dragMouseDown } = useDrag();
 
     const handleClick = (e) => {
         const rect = e.target.getBoundingClientRect();
@@ -29,7 +32,9 @@ const usePopup = () => {
         showPopup,
         popupPosition,
         popupRef,
-        handleClick
+        handleClick,
+        position,
+        dragMouseDown
     };
 };
 
