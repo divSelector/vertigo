@@ -3,7 +3,6 @@ import AbilityScores from "./components/character-creation/AbilityScores";
 import SocialContactPicker from "./components/character-creation/SocialContactPicker";
 import NameSelection from "./components/character-creation/NameSelection";
 import { ThemeProvider } from "./context/theme";
-import AudioTest from "./components/AudioTest";
 import Aura from "./game/Aura";
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 import routes from "./data/routes";
@@ -11,7 +10,7 @@ import { SwitchTransition, CSSTransition } from "react-transition-group";
 import './styles/transitions.css';
 import { useRef } from "react";
 import TitleScreen from "./components/TitleScreen";
-
+import OptionsLink from "./components/options/OptionsLink";
 
 const AnimatedPages = () => {
 
@@ -38,9 +37,6 @@ const AnimatedPages = () => {
           <Route path={routes.characterCreation + "4"} element={
             <NameSelection ref={nodeRef} />
           } />
-          <Route path={routes.audioTest} element={
-            <AudioTest ref={nodeRef} />
-          } />
         </Routes>
       </CSSTransition>
     </SwitchTransition>
@@ -54,6 +50,7 @@ function App() {
   return (
     <>
       <ThemeProvider>
+        <OptionsLink />
         <BrowserRouter>
           <AnimatedPages />
         </BrowserRouter>
@@ -63,5 +60,3 @@ function App() {
 }
 
 export default App
-
-

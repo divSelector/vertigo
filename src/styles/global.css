@@ -436,10 +436,10 @@ blockquote {
 
 aside {
     position: sticky;
-    --asize: 28px;
-    --padsize: 4px;
+    --asize: 2px;
+    --padsize: 2px;
     padding-left: calc(var(--asize) + (var(--padsize) * 2) + 0.5em);
-    max-width: 12em;
+    max-width: 5em;
 }
 
 aside::before {
@@ -462,6 +462,10 @@ aside::before {
         left: calc(10px + var(--width) + (50vw - (var(--width) / 2)));
         margin: 0;
     }
+}
+
+.endnote {
+    width: 90%;
 }
 
 .endnote .entry a.backlink {

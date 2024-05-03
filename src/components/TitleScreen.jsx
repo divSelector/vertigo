@@ -1,19 +1,14 @@
-import { forwardRef, useState } from "react";
+import { forwardRef } from "react";
 import { Button } from "../styles/Button";
 import { Link } from "react-router-dom";
 import routes from "../data/routes";
 import game from "../data/game";
 import SpaceStationOrbitingPlanet from "./graphic/SpaceStationOrbitingPlanet";
 import styled from "styled-components";
-import Endnote from "./Endnote";
-import useEndnote from "../hooks/useEndnote";
-import AudioOptions from "./options/AudioOptions";
 import audio from "../game/Audio";
 import audioManifest from "../assets/audio/manifest";
 
 const TitleScreen = forwardRef((props, ref) => {
-
-    const { isVisible: optionsVisible, toggleEndnote: toggleOptions } = useEndnote();
 
     const handleNewGame = (e) => {
         audio.stopEventMusic();
@@ -30,13 +25,8 @@ const TitleScreen = forwardRef((props, ref) => {
                     <Button onClick={handleNewGame}>New Game</Button>
                 </Link><br />
                 <Button disabled>Continue</Button>
-                <Button onClick={toggleOptions}>Options</Button>
                 <br />
             </MainMenu>
-
-            <Endnote isVisible={optionsVisible} onClose={toggleOptions}>
-                <AudioOptions />
-            </Endnote>
 
         </section >
     )
