@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './styles/global.css'
-import './styles/character-sheet.css'
+import './styles/popup.css'
 import './styles/graphics.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(

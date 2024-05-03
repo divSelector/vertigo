@@ -11,11 +11,11 @@ const CharacterSheet = ({ character }) => {
     const row = (label, content) => <tr><th>{label}</th><td>{content}</td></tr>
 
     return (
-        <div className="character-sheet-container"
+        <div className="popup-container"
              style={{ position: 'absolute', top: position.y, left: position.x }}
              onMouseDown={dragMouseDown}
         >
-            <table className="character-sheet">
+            <table className="popup-content">
                 <tbody>
                     <tr>
                         <th>Name</th>

@@ -42,4 +42,5 @@ export const NameLabel = styled.div`
     margin-right: 0.3em;
     font-weight: normal;
     width: 95%;
+    cursor: pointer;
 `;

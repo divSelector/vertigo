@@ -1,5 +1,5 @@
 const game = {
-    name: "the game"
+    name: "vertigo"
 };
 
 export default game;

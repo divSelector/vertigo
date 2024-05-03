@@ -20,7 +20,7 @@ const TitleScreen = forwardRef((props, ref) => {
 
             <SpaceStationOrbitingPlanet />
             <MainMenu>
-                <h2>{game.name}</h2>
+                <h2 style={{zIndex: '100'}}>{game.name}</h2>
                 <Link to={routes.characterCreation}>
                     <Button onClick={handleNewGame}>New Game</Button>
                 </Link><br />

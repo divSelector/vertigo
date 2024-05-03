@@ -1,13 +1,13 @@
-.character-sheet-container {
+.popup-container {
     user-select: none;
 }
 
-#character-sheet-container>table:first-child {
+#popup-container>table:first-child {
     display: block;
 }
 
 
-#character-sheet-container>table:not(:first-child) {
+#popup-container>table:not(:first-child) {
     display: none;
 }
 
@@ -15,7 +15,7 @@
     float: right;
 }
 
-table.character-sheet {
+.popup-content {
     background-color: black;
     color: white;
     border: 1px solid white;
@@ -25,70 +25,70 @@ table.character-sheet {
 }
 
 @media screen and (max-width: 400px) {
-    table.character-sheet {
+    table.popup-content {
         width: 100%;
     }
 }
 
 
-.character-sheet th.header {
+.popup-content th.header {
     text-align: center;
 }
 
-.character-sheet th.header::before,
-.character-sheet th.header::after {
+.popup-content th.header::before,
+.popup-content th.header::after {
     content: "â€”";
     margin: 0 0.5em;
     opacity: 0.6;
 }
 
-.character-sheet hr {
+.popup-content hr {
     border-color: white;
     opacity: 0.2;
 }
 
-.character-sheet td i {
+.popup-content td i {
     font-weight: 100;
 }
 
-.character-sheet tr {
+.popup-content tr {
     font-family: "Alegreya Sans", "Open Sans", "M+ 1c", sans-serif;
 }
 
-.character-sheet th {
+.popup-content th {
     text-align: right;
 }
 
-.character-sheet td,
-.character-sheet th {
+.popup-content td,
+.popup-content th {
     padding: .2em .4em;
 }
 
-.character-sheet .slogan {
+.popup-content .slogan {
     text-align: center;
     letter-spacing: .2em;
     color: #888;
     padding-bottom: 0;
 }
 
-.character-sheet .slogan::before,
-.character-sheet .slogan::after {
+.popup-content .slogan::before,
+.popup-content .slogan::after {
     content: "Â·";
     margin: 0 0.3em;
     opacity: 0.6;
 }
 
-.character-sheet>tr>td>i>img {
+.popup-content>tr>td>i>img {
     margin-left: 10px;
     margin-top: 5px;
 }
 
-.character-sheet>tr>td>i {
+.popup-content>tr>td>i {
     margin-left: 10px;
 }
 
 @media screen and (max-width: 400px) {
-    .character-sheet>tr>th {
+    .popup-content>tr>th {
         display: none;
     }
 }

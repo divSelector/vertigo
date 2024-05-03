@@ -8,6 +8,7 @@
 :root,
 body {
     font-size: 14pt;
+    user-select: none;
 }
 
 :root {
@@ -205,6 +206,14 @@ a[href] {
     color: var(--link-c);
     text-decoration-color: var(--ul-c);
     text-underline-offset: 2px;
+    background-color: unset !important;
+    cursor: pointer;
+}
+
+.popup-link {
+    border-bottom: 1px solid var(--faint-color);
+    padding: -0.1em;
+    cursor: pointer;
 }
 
 p a[href]:focus,
@@ -218,12 +227,14 @@ li a[href]:hover:focus,
 span a[href]:hover:focus,
 h1 a[href]:hover:focus,
 h2 a[href]:hover:focus,
-h3 a[href]:hover:focus {
+h3 a[href]:hover:focus,
+.popup-link:hover {
     color: var(--bg-color) !important;
     background: var(--fg-color) !important;
     box-shadow: 0 0 30px var(--ul-c);
     text-decoration: none;
     outline: none;
+
 }
 
 a[href]:hover,
