@@ -1,14 +1,14 @@
 import { Link } from 'react-router-dom';
-import game from "../../data/game";
 import routes from "../../data/routes";
 import { useTheme } from "../../context/theme";
-import { forwardRef, useEffect, useState } from 'react';
+import { forwardRef } from 'react';
 import Aura from '../../game/Aura';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import { faker } from '@faker-js/faker';
 import { CharacterNameLabel } from '../CharacterNameLabel';
 import styled from 'styled-components';
 import { DropdownInput } from '../../styles/DropdownInput';
+import { getJobTitleFromAbilityScores } from './AbilityScores';
 
 const SocialContactPicker = forwardRef((props, ref) => {
 
@@ -49,17 +49,15 @@ const SocialContactPicker = forwardRef((props, ref) => {
         setSelectedContact(contact);
     };
 
-    useEffect(() => {
-        if (!socialContactOptions.length) {
-            let newSocialContactOptions = [];
-            for (let i = 0; i < 4; i++) {
-                const socialContact = getFakeSocialContact();
-                socialContact.index = i;
-                newSocialContactOptions.push(socialContact);
-            }
-            setSocialContactOptions(newSocialContactOptions);
+    if (!socialContactOptions.length) {
+        let newSocialContactOptions = [];
+        for (let i = 0; i < 4; i++) {
+            const socialContact = getFakeSocialContact();
+            socialContact.index = i;
+            newSocialContactOptions.push(socialContact);
         }
-    }, []);
+        setSocialContactOptions(newSocialContactOptions);
+    }
 
     return (
         <section ref={ref}>
