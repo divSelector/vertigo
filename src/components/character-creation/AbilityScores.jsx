@@ -1,11 +1,12 @@
 import AbilityScoreSetter from "./AbilityScoreSetter";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import routes from "../../data/routes";
 import { forwardRef } from "react";
 import { Container, Row } from "../../styles/Layout";
+import { jobTitleMap, jobDescriptionMap } from "../../data/game";
 
 const AbilityScores = forwardRef((props, ref) => {
 
@@ -14,7 +15,51 @@ const AbilityScores = forwardRef((props, ref) => {
         'character-creation-ability-score-pool',
         totalPoints
     );
+
+    const [meat, setMeat] = useLocalStorage('character-creation-ability-score-meat', 1);
+    const [leet, setLeet] = useLocalStorage('character-creation-ability-score-leet', 1);
+    const [street, setStreet] = useLocalStorage('character-creation-ability-score-street', 1);
+
+    const [jobTitle, setJobTitle] = useState('');
+
     const [errMsg, setErrMsg] = useState('')
+
+    useEffect(() => {
+        const scores = { meat, leet, street };
+        const sortedScores = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+        const topScore = sortedScores[0][1];
+        const secondScore = sortedScores[1][1];
+        const lowestScore = sortedScores[2][1];
+    
+        let jobTitle;
+        if (topScore === 1 && secondScore === 1 && lowestScore === 1) {
+            jobTitle = 'Unemployable';
+        } else if (topScore - secondScore > 5) {  
+            // Significantly high top score indicates min/maxing
+            // These jobs ae supposed to be more undesirable to reward players for not min/maxing.
+            switch (sortedScores[0][0]) {
+                case 'meat':
+                    jobTitle = 'Factory Worker';
+                    break;
+                case 'leet':
+                    jobTitle = 'Data Entry Clerk';
+                    break;
+                case 'street':
+                    jobTitle = 'Telemarketer';
+                    break;
+                default:
+                    jobTitle = 'General Worker';  // Fallback
+            }
+        } else if (secondScore === lowestScore || secondScore === topScore) {
+            jobTitle = 'General Worker';  // Equal stats indicate less specialization
+        } else {
+            const jobKey = `${sortedScores[0][0]}+${sortedScores[1][0]}`;
+            jobTitle = jobTitleMap[jobKey] || 'General Worker';  // Normal case, balanced skills
+        }
+    
+        setJobTitle(jobTitle);
+    }, [meat, leet, street]);
+    
 
     return (
         <section ref={ref}>
@@ -37,6 +82,8 @@ const AbilityScores = forwardRef((props, ref) => {
                         setAvailablePoints={setAvailablePoints}
                         errMsg={errMsg}
                         setErrMsg={setErrMsg}
+                        score={meat}
+                        setScore={setMeat}
                     />
                     <AbilityScoreSetter
                         name="leet"
@@ -45,6 +92,8 @@ const AbilityScores = forwardRef((props, ref) => {
                         setAvailablePoints={setAvailablePoints}
                         errMsg={errMsg}
                         setErrMsg={setErrMsg}
+                        score={leet}
+                        setScore={setLeet}
                     />
                     <AbilityScoreSetter
                         name="street"
@@ -53,11 +102,16 @@ const AbilityScores = forwardRef((props, ref) => {
                         setAvailablePoints={setAvailablePoints}
                         errMsg={errMsg}
                         setErrMsg={setErrMsg}
+                        score={street}
+                        setScore={setStreet}
                     />
                 </AbilityScoresContainer>
                 <Text>
                     <p>Ability scores are key attributes that define your character's strengths and weaknesses. Use the <code>+</code> and <code>-</code> buttons to spend all of your available points. When you have no points remaining you may proceed to the next screen.</p>
-                    <p>In the future I will probably have more advice about how to spend these points.</p>
+                    <p>The point distribution will affect the type of job that you are suitable for.</p>
+                    <hr /><br />
+                    <h3 className="byline">{jobTitle}</h3>
+                    <blockquote className="right" style={{fontSize: '80%', textAlign: 'left'}}>{jobDescriptionMap && jobDescriptionMap[jobTitle]}</blockquote>
                 </Text>
             </AbilityScoresRow>
             {errMsg &&

@@ -3,10 +3,7 @@ import { Button } from "../../styles/Button";
 import styled from 'styled-components';
 import { ContainerNoSelect, Row } from "../../styles/Layout";
 
-const AbilityScoreSetter = ({ name, description, availablePoints, setAvailablePoints, errMsg, setErrMsg }) => {
-
-    const storageKey = 'character-creation-ability-score-' + name
-    const [count, setCount] = useLocalStorage(storageKey, 1);
+const AbilityScoreSetter = ({ name, description, availablePoints, setAvailablePoints, errMsg, setErrMsg, score, setScore }) => {
 
     const showErrorMessage = (msg, timer = 1500) => {
         if (errMsg == "") {
@@ -19,7 +16,7 @@ const AbilityScoreSetter = ({ name, description, availablePoints, setAvailablePo
 
     const increment = () => {
         if (availablePoints > 0) {
-            setCount(count + 1);
+            setScore(score + 1);
             setAvailablePoints(availablePoints - 1);
         } else {
             showErrorMessage("Slow down there, broke bitch. You got no points.")
@@ -27,8 +24,8 @@ const AbilityScoreSetter = ({ name, description, availablePoints, setAvailablePo
     };
 
     const decrement = () => {
-        if (count > 1) {
-            setCount(count - 1);
+        if (score > 1) {
+            setScore(score - 1);
             setAvailablePoints(availablePoints + 1);
         } else {
             showErrorMessage("A score of less than 1 is nonexistance, pal.")
@@ -40,7 +37,7 @@ const AbilityScoreSetter = ({ name, description, availablePoints, setAvailablePo
             <ContainerNoSelect>
                 <Row>
                     <Label>{name}</Label>
-                    <Value>{count}</Value>
+                    <Value>{score}</Value>
                     <Button onClick={decrement}>-</Button>
                     <Button onClick={increment}>+</Button>
                 </Row>
