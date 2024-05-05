@@ -6,16 +6,18 @@ import { useTheme } from "../../context/theme";
 import { forwardRef } from 'react';
 import { getColorName, getBrightName } from '../../game/Aura';
 import useLocalStorage from '../../hooks/useLocalStorage';
+import { usePlayer } from '../../context/player';
 
 const AuraSelection = forwardRef((props, ref) => {
 
-    const { hue, bright, updateHue, updateBright } = useTheme();
+    const { getPlayerData, switchPlayer } = usePlayer();
+    switchPlayer('character-creation')
+    const { hue, bright, updateHue, updateBright, setSelectedContact } = getPlayerData()
 
     const [socialContactOptions, setSocialContactOptions] = useLocalStorage(
         'character-creation-random-social-contact-options',
         []
     );
-    const [selectedContact, setSelectedContact] = useLocalStorage('character-creation-selected-contact', null)
 
     const handleHueChange = (event) => {
         const newHue = parseInt(event.target.value);

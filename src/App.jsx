@@ -11,6 +11,7 @@ import './styles/transitions.css';
 import { useRef } from "react";
 import TitleScreen from "./components/TitleScreen";
 import OptionsLink from "./components/options/OptionsLink";
+import { PlayerProvider } from "./context/player";
 
 const AnimatedPages = () => {
 
@@ -50,10 +51,12 @@ function App() {
   return (
     <>
       <ThemeProvider>
-        <OptionsLink />
-        <BrowserRouter>
-          <AnimatedPages />
-        </BrowserRouter>
+        <PlayerProvider>
+          <OptionsLink />
+          <BrowserRouter>
+            <AnimatedPages />
+          </BrowserRouter>
+        </PlayerProvider>
       </ThemeProvider>
     </>
   )

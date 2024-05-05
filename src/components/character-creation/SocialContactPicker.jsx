@@ -9,11 +9,14 @@ import { CharacterNameLabel } from '../CharacterNameLabel';
 import styled from 'styled-components';
 import { DropdownInput } from '../../styles/DropdownInput';
 import { getJobTitleFromAbilityScores } from './AbilityScores';
+import { usePlayer } from '../../context/player';
 
 const SocialContactPicker = forwardRef((props, ref) => {
 
-    const [selectedContact, setSelectedContact] = useLocalStorage('character-creation-selected-contact', null);
-    const { hue, bright } = useTheme();
+    const { getPlayerData } = usePlayer();
+    const { meat, leet, street, hue, bright, selectedContact, setSelectedContact } = getPlayerData();
+    
+    const jobTitle = getJobTitleFromAbilityScores({ meat, leet, street})
 
     const playerAura = new Aura(hue, bright)
 
@@ -64,7 +67,7 @@ const SocialContactPicker = forwardRef((props, ref) => {
             <h2>Character Creation</h2>
             <h4>Select a Social Contact</h4>
             <br />
-            <p>You recently lost your job. An old friend from school works for Vertico Corporation and thinks they can get you a position.</p>
+            <p>You recently lost your job as a {jobTitle}. An old friend from school works for Vertico Corporation and thinks they can get you hired.</p>
             <blockquote>You can see more information about characters in draggable popup boxes by clicking their names. The popups will close when you click outside of them.</blockquote>
             <br />
 

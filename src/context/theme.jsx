@@ -7,13 +7,15 @@ export const useTheme = () => useContext(ThemeContext);
 
 export const ThemeProvider = ({ children }) => {
 
+    const [activePlayerId, setActivePlayerId] = useLocalStorage('player-active-id', 'character-creation');
+
     const [hue, setHue] = useLocalStorage(
-        'theme-current-hue',
+        `${activePlayerId}-theme-hue`,
         getRootSelectorValue('--hue')
     );
 
     const [bright, setBright] = useLocalStorage(
-        'theme-current-bright',
+        `${activePlayerId}-theme-bright`,
         getRootSelectorValue('--bright')
     );
 

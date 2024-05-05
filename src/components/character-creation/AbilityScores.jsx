@@ -1,12 +1,13 @@
 import AbilityScoreSetter from "./AbilityScoreSetter";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import styled from "styled-components";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from 'react-router-dom';
 import routes from "../../data/routes";
 import { forwardRef } from "react";
 import { Container, Row } from "../../styles/Layout";
 import { jobTitleMap, jobDescriptionMap } from "../../data/game";
+import { usePlayer } from "../../context/player";
 
 const AbilityScores = forwardRef((props, ref) => {
 
@@ -16,9 +17,8 @@ const AbilityScores = forwardRef((props, ref) => {
         totalPoints
     );
 
-    const [meat, setMeat] = useLocalStorage('character-creation-ability-score-meat', 1);
-    const [leet, setLeet] = useLocalStorage('character-creation-ability-score-leet', 1);
-    const [street, setStreet] = useLocalStorage('character-creation-ability-score-street', 1);
+    const { getPlayerData } = usePlayer();
+    const { meat, leet, street, setMeat, setLeet, setStreet } = getPlayerData();
 
     const jobTitle = getJobTitleFromAbilityScores({meat, leet, street})
 

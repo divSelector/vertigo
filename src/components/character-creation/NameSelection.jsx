@@ -7,11 +7,12 @@ import { CharacterNameLabel } from "../CharacterNameLabel";
 import usePopup from "../../hooks/usePopup";
 import { PopupContainer } from "../../styles/Layout";
 import PopupContent from "../PopupContent";
+import { usePlayer } from "../../context/player";
 
 const NameSelection = forwardRef((props, ref) => {
 
-    const [name, setName] = useLocalStorage('character-creation-name', "");
-    const [selectedContact, setSelectedContact] = useLocalStorage('character-creation-selected-contact', null);
+    const { getPlayerData } = usePlayer();
+    const { name, setName, selectedContact } = getPlayerData();
 
     const { showPopup, popupPosition, popupRef, handleClick, position, dragMouseDown } = usePopup();
     const { showPopup: showPopup2,
