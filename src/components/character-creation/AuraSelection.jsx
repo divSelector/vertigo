@@ -2,17 +2,19 @@ import { Link } from 'react-router-dom';
 import { SliderContainer, SliderInput } from "../../styles/Slider";
 import game from "../../data/game";
 import routes from "../../data/routes";
-import { useTheme } from "../../context/theme";
 import { forwardRef } from 'react';
 import { getColorName, getBrightName } from '../../game/Aura';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import { usePlayer } from '../../context/player';
+import { useTheme } from '../../context/theme';
 
 const AuraSelection = forwardRef((props, ref) => {
 
     const { getPlayerData, switchPlayer } = usePlayer();
-    switchPlayer('character-creation')
-    const { hue, bright, updateHue, updateBright, setSelectedContact } = getPlayerData()
+    switchPlayer('character-creation');
+    const { setSelectedContact } = getPlayerData();
+
+    const { hue, bright, updateHue, updateBright } = useTheme();
 
     const [socialContactOptions, setSocialContactOptions] = useLocalStorage(
         'character-creation-random-social-contact-options',

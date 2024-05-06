@@ -14,8 +14,9 @@ import { usePlayer } from '../../context/player';
 const SocialContactPicker = forwardRef((props, ref) => {
 
     const { getPlayerData } = usePlayer();
-    const { meat, leet, street, hue, bright, selectedContact, setSelectedContact } = getPlayerData();
-    
+    const { meat, leet, street, selectedContact, setSelectedContact } = getPlayerData();
+    const { hue, bright } = useTheme();
+
     const jobTitle = getJobTitleFromAbilityScores({ meat, leet, street})
 
     const playerAura = new Aura(hue, bright)
@@ -67,7 +68,7 @@ const SocialContactPicker = forwardRef((props, ref) => {
             <h2>Character Creation</h2>
             <h4>Select a Social Contact</h4>
             <br />
-            <p>You recently lost your job as a {jobTitle}. An old friend from school works for Vertico Corporation and thinks they can get you hired.</p>
+            <p>You recently lost your job as a {jobTitle}. An old friend from school works for Vertico Corporation and thinks they can get you hired at a new position.</p>
             <blockquote>You can see more information about characters in draggable popup boxes by clicking their names. The popups will close when you click outside of them.</blockquote>
             <br />
 

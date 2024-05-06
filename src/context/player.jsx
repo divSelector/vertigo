@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect } from 'react';
+import React, { createContext, useContext } from 'react';
 import useLocalStorage from '../hooks/useLocalStorage';
 import { useTheme } from './theme';
 
@@ -7,8 +7,6 @@ const PlayerContext = createContext();
 export const usePlayer = () => useContext(PlayerContext);
 
 export const PlayerProvider = ({ children }) => {
-
-    const { hue, bright, updateHue, updateBright } = useTheme();
     
     const [activePlayerId, setActivePlayerId] = useLocalStorage('player-active-id');
 
@@ -28,8 +26,6 @@ export const PlayerProvider = ({ children }) => {
         return {
             meat, leet, street,
             setMeat, setLeet, setStreet,
-            hue, bright,
-            updateHue, updateBright,
             selectedContact, setSelectedContact,
             name, setName
         }

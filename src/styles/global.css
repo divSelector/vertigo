@@ -163,6 +163,10 @@ p {
     line-height: 1.5em;
 }
 
+.indent {
+    text-indent: 2em;
+}
+
 del {
     color: var(--faint-color);
     text-decoration-color: hsl(var(--hue), 80%, 60%);

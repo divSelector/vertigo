@@ -2,7 +2,6 @@ import { forwardRef } from "react"
 import { Link } from "react-router-dom";
 import routes from "../../data/routes";
 import { TextInput } from "../../styles/TextInput";
-import useLocalStorage from "../../hooks/useLocalStorage";
 import { CharacterNameLabel } from "../CharacterNameLabel";
 import usePopup from "../../hooks/usePopup";
 import { PopupContainer } from "../../styles/Layout";

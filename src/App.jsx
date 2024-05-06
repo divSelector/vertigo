@@ -12,6 +12,7 @@ import { useRef } from "react";
 import TitleScreen from "./components/TitleScreen";
 import OptionsLink from "./components/options/OptionsLink";
 import { PlayerProvider } from "./context/player";
+import JobOffer from "./components/character-creation/JobOffer";
 
 const AnimatedPages = () => {
 
@@ -37,6 +38,9 @@ const AnimatedPages = () => {
           } />
           <Route path={routes.characterCreation + "4"} element={
             <NameSelection ref={nodeRef} />
+          } />
+          <Route path={routes.characterCreation + "5"} element={
+            <JobOffer ref={nodeRef} />
           } />
         </Routes>
       </CSSTransition>
