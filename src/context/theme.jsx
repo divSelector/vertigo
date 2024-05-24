@@ -32,11 +32,12 @@ export const ThemeProvider = ({ children }) => {
     }
 
     useEffect(() => {
+        console.log("sdf")
         updateHue(hue);
         updateBright(bright);
-    }, [hue, bright])
+    }, [hue, bright, activePlayerId])
 
-    const theme = { hue, bright, updateHue, updateBright }
+    const theme = { hue, bright, updateHue, updateBright, activePlayerId, setActivePlayerId }
 
     return (
         <ThemeContext.Provider value={theme}>
