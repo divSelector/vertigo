@@ -13,7 +13,7 @@ const AbilityScores = forwardRef((props, ref) => {
 
     const totalPoints = 6;
     const [availablePoints, setAvailablePoints] = useLocalStorage(
-        'character-creation-ability-score-pool',
+        'character-creation-ability-score-pool-temp',
         totalPoints
     );
 

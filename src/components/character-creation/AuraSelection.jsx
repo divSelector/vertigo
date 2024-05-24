@@ -17,7 +17,7 @@ const AuraSelection = forwardRef((props, ref) => {
     const { hue, bright, updateHue, updateBright } = useTheme();
 
     const [socialContactOptions, setSocialContactOptions] = useLocalStorage(
-        'character-creation-random-social-contact-options',
+        'character-creation-random-social-contact-options-temp',
         []
     );
 
