@@ -29,9 +29,8 @@ const JobOffer = forwardRef((props, ref) => {
     }
 
     const handleSavePlayer = () => {
-        const newPlayerName = name;
         saveNewPlayer(name)
-        switchPlayer(newPlayerName)
+        switchPlayer(name)
     }
 
     return (
