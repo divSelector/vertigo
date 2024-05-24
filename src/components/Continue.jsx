@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { forwardRef, useEffect } from "react";
 import SpaceStationOrbitingPlanet from "./graphic/SpaceStationOrbitingPlanet";
 import { MainMenu } from "./TitleScreen";
 import { usePlayer } from "../context/player";
@@ -10,8 +10,6 @@ const Continue = forwardRef((props, ref) => {
     const { getPlayerData, switchPlayer } = usePlayer();
     const { saveFiles } = getPlayerData();
 
-console.log(saveFiles)
-
     return (
         <section ref={ref}>
             <SpaceStationOrbitingPlanet />
@@ -22,11 +20,16 @@ console.log(saveFiles)
                 })}
                 <br />
             </MainMenu>
-            <nav>
+            <NavAbsolutePosition>
                 <Link className="prev" to={"/"}>BACK</Link>
-            </nav>
+            </NavAbsolutePosition>
         </section>
     )
 });
+
+const NavAbsolutePosition = styled.nav`
+    position: absolute;
+    bottom: '5%';
+`;
 
 export default Continue;
