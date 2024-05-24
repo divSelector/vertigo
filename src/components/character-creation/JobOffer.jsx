@@ -10,7 +10,7 @@ import PopupContent from "../PopupContent";
 
 const JobOffer = forwardRef((props, ref) => {
 
-    const { getPlayerData } = usePlayer();
+    const { getPlayerData, saveNewPlayer, switchPlayer } = usePlayer();
     const { name, meat, leet, street } = getPlayerData()
 
     const { showPopup, popupPosition, popupRef, handleClick, position, dragMouseDown } = usePopup();
@@ -26,6 +26,12 @@ const JobOffer = forwardRef((props, ref) => {
             default:
                 return <> While this role may not be what you initially envisioned</>;
         }
+    }
+
+    const handleSavePlayer = () => {
+        const newPlayerName = name;
+        saveNewPlayer(name)
+        switchPlayer(newPlayerName)
     }
 
     return (
@@ -46,7 +52,7 @@ const JobOffer = forwardRef((props, ref) => {
             <p className="byline right">[Vertico Corporation]</p>
             <nav>
                 <Link className="prev" to={routes.characterCreation + "4"}>BACK</Link>
-                <Link className="next" to={routes.characterCreation + "6"}>NEXT</Link>
+                <Link className="next" onClick={handleSavePlayer} to={"/"}>SAVE</Link>
             </nav>
 
             {showPopup && (
