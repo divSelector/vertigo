@@ -7,8 +7,13 @@ import SpaceStationOrbitingPlanet from "./graphic/SpaceStationOrbitingPlanet";
 import styled from "styled-components";
 import audio from "../game/Audio";
 import audioManifest from "../assets/audio/manifest";
+import { usePlayer } from "../context/player";
 
 const TitleScreen = forwardRef((props, ref) => {
+
+    const { getPlayerData } = usePlayer();
+    const { saveFiles } = getPlayerData();
+
 
     audio.loadAudioFile(audioManifest.SLOWSPACE.src)
 
@@ -26,7 +31,12 @@ const TitleScreen = forwardRef((props, ref) => {
                 <Link to={routes.characterCreation}>
                     <Button onClick={handleNewGame}>New Game</Button>
                 </Link><br />
-                <Button disabled>Continue</Button>
+                {saveFiles.length > 0 ?
+                    <Link to={routes.continue}>
+                        <Button>Continue</Button>
+                    </Link> :
+                    <Button disabled>Continue</Button>
+                }
                 <br />
             </MainMenu>
 

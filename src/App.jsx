@@ -13,6 +13,7 @@ import TitleScreen from "./components/TitleScreen";
 import OptionsLink from "./components/options/OptionsLink";
 import { PlayerProvider } from "./context/player";
 import JobOffer from "./components/character-creation/JobOffer";
+import Continue from "./components/Continue";
 
 const AnimatedPages = () => {
 
@@ -27,6 +28,10 @@ const AnimatedPages = () => {
           <Route exact path={'/'} element={
             <TitleScreen ref={nodeRef} />
           } />
+          <Route exact path={routes.continue} element={
+            <Continue ref={nodeRef} />
+          } />
+
           <Route path={routes.characterCreation} element={
             <AuraSelection ref={nodeRef} />
           } />
