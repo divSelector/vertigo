@@ -32,10 +32,19 @@ export const ThemeProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        console.log("sdf")
         updateHue(hue);
         updateBright(bright);
-    }, [hue, bright, activePlayerId])
+    }, [hue, bright]);
+
+    useEffect(() => {
+        if (activePlayerId != 'character-creation') {
+            const storedHue = parseInt(localStorage.getItem(`player-${activePlayerId}-theme-hue`));
+            const storedBright = parseInt(localStorage.getItem(`player-${activePlayerId}-theme-bright`));
+            console.log(storedHue, storedBright)
+            setHue(storedHue);
+            setBright(storedBright);
+        }
+    }, [activePlayerId]);
 
     const theme = { hue, bright, updateHue, updateBright, activePlayerId, setActivePlayerId }
 
