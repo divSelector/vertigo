@@ -5,7 +5,7 @@ import { TextInput } from "../../styles/TextInput";
 import { CharacterNameLabel } from "../CharacterNameLabel";
 import usePopup from "../../hooks/usePopup";
 import { PopupContainer } from "../../styles/Layout";
-import PopupContent from "../PopupContent";
+import PopupContent from "../popup/PopupContent";
 import { usePlayer } from "../../context/player";
 
 const NameSelection = forwardRef((props, ref) => {

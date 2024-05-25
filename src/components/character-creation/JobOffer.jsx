@@ -5,7 +5,7 @@ import routes from "../../data/routes";
 import { getJobTitleFromAbilityScores } from "./AbilityScores";
 import usePopup from "../../hooks/usePopup";
 import { PopupContainer } from "../../styles/Layout";
-import PopupContent from "../PopupContent";
+import PopupContent from "../popup/PopupContent";
 
 
 const JobOffer = forwardRef((props, ref) => {
