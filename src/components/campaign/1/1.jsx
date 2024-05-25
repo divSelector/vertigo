@@ -30,26 +30,31 @@ const CampaignOne1 = forwardRef((props, ref) => {
 
     const popups = useMultiplePopups(popupContents.length);
 
-    const linkPopup = idx => (
+    const linkPopup = idx => <>
         <span className="popup-link" onClick={popups[idx].handleClick}>
             {popupContents[idx].triggerText}
         </span>
-    )
+    </>
 
     return (
         <section ref={ref}>
             <h2></h2>
             <h4></h4>
             <hr />
-            <p>You board the shuttle, a sleek, metallic vessel, its cold surfaces reflecting the harsh lights 
+            <p>You board the shuttle, a sleek, metallic vessel, its cold surfaces reflecting the harsh lights
                 of {linkPopup(0)}. The emblem of {linkPopup(1)} is emblazoned on the walls, a reminder of the world you are leaving behind.</p>
 
-            <p>The hum of the engines grows louder as the shuttle detaches from the station, and your stomach churns with unease. Through the small 
+            <p>The hum of the engines grows louder as the shuttle detaches from the station, and your stomach churns with unease. Through the small
                 window, you catch a final glimpse of the station that has been your home.</p>
 
-            <p>Ahead lies the {linkPopup(2)}, run by {linkPopup(3)} —- an entity once considered a rival, now your new overseer. The weight 
+            <p>Ahead lies the {linkPopup(2)}, run by {linkPopup(3)} —- an entity once considered a rival, now your new overseer. The weight
                 of uncertainty settles heavily on your shoulders.</p>
+            <hr />
 
+            <nav>
+                <Link className="prev" to={'/'}>BACK</Link>
+                <Link className="next" to={routes.campaign1 + '2'}>NEXT</Link>
+            </nav>
 
             {popups.map((popup, index) => (
                 <Popup key={index} {...popup}>

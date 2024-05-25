@@ -15,6 +15,8 @@ import { PlayerProvider } from "./context/player";
 import JobOffer from "./components/character-creation/JobOffer";
 import Continue from "./components/Continue";
 import CampaignOne1 from "./components/campaign/1/1";
+import CampaignOne2 from "./components/campaign/1/2";
+import CampaignOne3 from "./components/campaign/1/3";
 
 const AnimatedPages = () => {
 
@@ -53,7 +55,13 @@ const AnimatedPages = () => {
 
           {/* Campaign 1 Routes */}
           <Route path={routes.campaign1} element={
-            <CampaignOne1 />
+            <CampaignOne1 ref={nodeRef} />
+          } />
+          <Route path={routes.campaign1 + "2"} element={
+            <CampaignOne2 ref={nodeRef} />
+          } />
+          <Route path={routes.campaign1 + "3"} element={
+            <CampaignOne3 ref={nodeRef} />
           } />
 
 
