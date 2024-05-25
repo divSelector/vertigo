@@ -67,7 +67,7 @@ const AuraSelection = forwardRef((props, ref) => {
             <p>{bright} {hue}</p>
 
             <hr />
-            <p>Every character in {game.name} including non player characters have an aura. For lack of a better word, this is a measurement of how likely you are to get along with the people around you. Obviously, effort can be put into building better relationships with any type of person. Similarly, you can alienate someone with a similar aura to yours through your actions. But characters who have similar auras will <i style={{color:'var(--faint-color)'}}>get</i> each other more easily.</p>
+            <p>Every character in {game.name} including non player characters have an aura. For lack of a better word, this is a measurement of how likely you are to get along with the people around you. Obviously, effort can be put into building better relationships with any type of person. Similarly, you can alienate someone with a complementary aura to yours through your actions. But characters who have complementary auras will <i style={{color:'var(--faint-color)'}}>get</i> each other more easily.</p>
 
 
             <nav>
