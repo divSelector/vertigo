@@ -1,7 +1,8 @@
 const routes = {
     characterCreation: '/new/',
     audioTest: '/audio/',
-    continue: '/continue/'
+    continue: '/continue/',
+    campaign1: '/camp/1/'
 }
 
 export default routes;

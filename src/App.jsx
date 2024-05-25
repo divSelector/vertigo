@@ -14,6 +14,7 @@ import OptionsLink from "./components/options/OptionsLink";
 import { PlayerProvider } from "./context/player";
 import JobOffer from "./components/character-creation/JobOffer";
 import Continue from "./components/Continue";
+import CampaignOne1 from "./components/campaign/1/1";
 
 const AnimatedPages = () => {
 
@@ -32,6 +33,8 @@ const AnimatedPages = () => {
             <Continue ref={nodeRef} />
           } />
 
+          {/* Character Creation Routes */}
+
           <Route path={routes.characterCreation} element={
             <AuraSelection ref={nodeRef} />
           } />
@@ -47,6 +50,13 @@ const AnimatedPages = () => {
           <Route path={routes.characterCreation + "5"} element={
             <JobOffer ref={nodeRef} />
           } />
+
+          {/* Campaign 1 Routes */}
+          <Route path={routes.campaign1} element={
+            <CampaignOne1 />
+          } />
+
+
         </Routes>
       </CSSTransition>
     </SwitchTransition>
