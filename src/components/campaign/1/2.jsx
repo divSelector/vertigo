@@ -12,7 +12,8 @@ const CampaignOne2 = forwardRef((props, ref) => {
             <p>The shuttle docks with a jolt at the intermediary station, a stark, utilitarian structure floating in the void. As the hatch opens, you're greeted by the sight of two security teams standing on opposite sides of the docking bay.</p>
             <p>Orbitex guards in their familiar blue uniforms flank one side, their faces stern and unyielding. Opposite them, Vertico enforcers in sharp, black attire stand equally rigid. The air is thick with tension, like a cold war standoff.</p>
             <p>You step forward, feeling the eyes of both teams on you. The Orbitex commander hands over a data pad to his Vertico counterpart, and you realize there is no turning back.</p>
-            <hr/ >
+            <hr />
+
             <nav>
                 <Link className="prev" to={routes.campaign1}>BACK</Link>
                 <Link className="next" to={routes.campaign1 + '3'}>NEXT</Link>
