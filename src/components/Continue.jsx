@@ -5,6 +5,7 @@ import { usePlayer } from "../context/player";
 import { Button } from "../styles/Button";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import routes from "../data/routes";
 
 const Continue = forwardRef((props, ref) => {
 
@@ -17,14 +18,17 @@ const Continue = forwardRef((props, ref) => {
             <MainMenu>
                 <h2 style={{ zIndex: '100' }}>Continue</h2>
                 {saveFiles.map((playerId, index) => {
-                    return <Button key={index} onClick={() => switchPlayer(playerId)} >{playerId}</Button>
+                    return <Button key={index} onClick={() => {
+                        switchPlayer(playerId);
+
+                    }} >{playerId}</Button>
                 })}
                 <br />
             </MainMenu>
             <NavAbsolutePosition>
                 <StyledLink className="prev" to={"/"} position="left">BACK</StyledLink>
                 {activePlayerId !== 'character-creation' &&
-                    <StyledLink className="next" to={"/"} position="right">NEXT</StyledLink>
+                    <StyledLink className="next" to={routes.campaign1} position="right">NEXT</StyledLink>
                 }
             </NavAbsolutePosition>
         </section>
