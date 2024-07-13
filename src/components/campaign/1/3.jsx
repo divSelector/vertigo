@@ -15,6 +15,7 @@ const CampaignOne3 = forwardRef((props, ref) => {
 
             <hr />
             <p>What... don't tell me you thought this was finished. LUL.</p>
+            <p>The <a href="https://github.com/divSelector/vertigo">CODE ON GITHUB</a> is available btw.</p>
 
 
             <nav>
